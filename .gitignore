@@ -1,0 +1,10 @@
+.DS_Store
+.vscode/chrome/
+node_modules/
+.env
+
+# auto generated file
+server/public/
+jsconfig.json
+.vscode/settings.json
+.yarn.lock
