@@ -3,9 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './client/src/app.js',
+  entry: path.join(__dirname, '../client/src/app.js'),
   output: {
-    path: path.join(__dirname, '/server/public'),
+    path: path.join(__dirname, '../server/public'),
     filename: 'bundle.js',
   },
   resolve: {
@@ -38,7 +38,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '/client/public/index.html'),
+      template: path.join(__dirname, '../client/public/index.html'),
       filename: 'index.html',
       hash: true,
       inject: 'body',
