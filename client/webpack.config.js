@@ -1,5 +1,5 @@
-const configDevelopment = require('./config/webpack.config.development');
-const configProduction = require('./config/webpack.config.production');
+const configDevelopment = require('./webpack.config.development');
+const configProduction = require('./webpack.config.production');
 
 module.exports = (env, options) => {
   if (options.mode === 'development') {

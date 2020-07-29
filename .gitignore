@@ -5,6 +5,4 @@ node_modules/
 
 # auto generated file
 server/public/
-jsconfig.json
-.vscode/settings.json
 .yarn.lock

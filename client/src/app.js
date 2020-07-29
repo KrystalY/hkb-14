@@ -1,1 +1,1 @@
-import style from '../public/assets/stylesheets/style.css';
+import style from '@src/assets/stylesheets/style.css';

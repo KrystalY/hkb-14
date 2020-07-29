@@ -1,0 +1,8 @@
+{
+  "path-autocomplete.pathMappings": {
+    "@src": "${folder}/client/src",
+    "@routes": "${folder}/server/routes",
+    "@model": "${folder}/server/model",
+    "@dao": "${folder}/server/dao"
+  }
+}

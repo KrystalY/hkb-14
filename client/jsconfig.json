@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es2020",
+    "module": "es2020",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@src": [
+        "src/index.ts",
+        "src/index.tsx",
+        "src/index.js",
+        "src/index.json",
+        "src/index.scss",
+        "src/index.css"
+      ]
+    }
+  }
+}

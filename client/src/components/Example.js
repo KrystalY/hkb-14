@@ -1,3 +1,3 @@
-export default class Exmaple {
+export default class Example {
   constructor() {}
 }

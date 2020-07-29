@@ -8,6 +8,10 @@ module.exports = {
   extends: 'eslint:recommended',
   parserOptions: {
     ecmaVersion: 11,
+    sourceType: 'module',
   },
-  rules: {},
+  rules: {
+    curly: ['error', 'all'],
+    'brace-style': ['error', '1tbs'],
+  },
 };
