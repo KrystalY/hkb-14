@@ -1,15 +1,13 @@
 import Pool from './pool';
 
 const FIND_BY_YEAR_AND_MONTH =
-  'SELECT * FROM MONEY_RECORD WHERE RECORD_AT BETWEEN ? AND ?';
+  'SELECT * FROM MONEY_RECORD WHERE RECORD_AT BETWEEN ? AND ? ORDER BY RECORD_AT, `KEY`';
 export default class Record {
   constructor() {}
 
   async findByYearAndMonth(year, month) {
     const connection = await Pool.getConnection();
     const [firstDate, lastDate] = this.getRangeOfMonth(year, month);
-    console.log(firstDate);
-    console.log(lastDate);
     const [rows] = await connection.execute(FIND_BY_YEAR_AND_MONTH, [
       firstDate,
       lastDate,
