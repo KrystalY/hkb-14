@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon  --exec babel-node --presets @babel/env ./bin/www"
   },
   "_moduleAliases": {
     "@api": "api",
@@ -20,5 +20,11 @@
     "module-alias": "^2.2.2",
     "morgan": "~1.9.1",
     "mysql2": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.10.4"
   }
 }
