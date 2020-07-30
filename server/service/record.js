@@ -1,8 +1,8 @@
 import RecordModel from '@model/record';
 
-async function FindByYearAndMonth(year, month) {
+async function findByYearAndMonth(year, month) {
   const record = await RecordModel.FindByYearAndMonth(year, month);
   return record;
 }
 
-export { FindByYearAndMonth };
+export { findByYearAndMonth };
