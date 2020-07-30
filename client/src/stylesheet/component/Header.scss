@@ -1,0 +1,26 @@
+@import '@src/stylesheet/_config.scss';
+
+.header {
+  display: flex;
+  width: 100%;
+  background: $color-pink;
+  padding: 32px;
+  word-break: break-all;
+  align-items: center;
+
+  .logo {
+    flex-grow: 1;
+    font-size: 1.6em;
+    font-weight: 700;
+    color: $logo-text-color;
+  }
+
+  .menu {
+    a {
+      color: $color-white;
+    }
+
+    font-size: 1.2em;
+    color: $color-white;
+  }
+}
