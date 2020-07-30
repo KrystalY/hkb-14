@@ -7,6 +7,11 @@ async function findByYearAndMonth(year, month) {
   return changeFormatOfRecord(record);
 }
 
+async function getRecentUpdatedDate(year, month) {
+  const [record] = await recordModel.getRecentUpdatedRecord(year, month);
+  return record.EDITED_AT;
+}
+
 function changeFormatOfRecord(records) {
   return records.map((record) => {
     const recordAt = record.record_at;
@@ -14,4 +19,4 @@ function changeFormatOfRecord(records) {
   });
 }
 
-export { findByYearAndMonth };
+export { findByYearAndMonth, getRecentUpdatedDate };
