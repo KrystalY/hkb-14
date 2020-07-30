@@ -12,7 +12,7 @@ export default function DateView() {
   function render() {
     const html = `
     <a class="prev" href="#"><span class="arrow"></span></a>
-    <div class="month">6월</div>
+    <div class="month">7월</div>
     <a class="next" href="#"><span class="arrow-right"></span></a>
     `;
 

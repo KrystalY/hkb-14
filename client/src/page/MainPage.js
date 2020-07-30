@@ -1,6 +1,8 @@
 import Header from '@src/component/Header.js';
 import Navigator from '@src/component/Navigator.js';
 import DateView from '@src/component/DateView.js';
+import AddRecordForm from '@src/component/AddRecordForm.js';
+import RecordGroup from '@src/component/RecordGroup.js';
 
 import { DateViewEvent } from '@src/constant/Event.js';
 import { notify } from '@src/constant/State.js';
@@ -13,7 +15,7 @@ export default class MainPage {
 
   render() {
     setTimeout(() => {
-      notify(DateViewEvent.onDateChanged, { month: 12 });
+      notify(DateViewEvent.onDateChanged, { month: 7 });
     }, 5000);
 
     return `
@@ -21,7 +23,9 @@ export default class MainPage {
     <div class="main_page">
       ${DateView()}
       ${Navigator()}
-      <div class="box">
+      <div class="section">
+        ${AddRecordForm()}
+        ${RecordGroup()}
       </div>
     </div>
     `;
