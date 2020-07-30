@@ -1,0 +1,27 @@
+@import '@src/stylesheet/_config.scss';
+
+.date_view {
+  display: flex;
+  width: 600px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+
+  .month {
+    font-size: 1.6em;
+  }
+
+  .arrow {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 8px solid;
+    transform: rotate(-45deg);
+    border-color: $black-3 transparent transparent $black-3;
+  }
+
+  .arrow-right {
+    @extend .arrow;
+    transform: rotate(135deg);
+  }
+}

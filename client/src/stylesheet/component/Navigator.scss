@@ -1,0 +1,35 @@
+@import '@src/stylesheet/_config.scss';
+
+// <ul class="tab">
+//   <li className="tab">내역</li>
+//   <li className="tab">달력</li>
+//   <li className="tab">통계</li>
+// </ul>
+
+.navigator {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  ul.tab {
+    display: flex;
+    width: 100%;
+    border: 1px solid #cdcdcd;
+    user-select: none;
+
+    li {
+      flex-grow: 1;
+      padding: 20px 20px;
+      border-right: 1px solid #cdcdcd;
+      font-size: 1.2em;
+      font-weight: 400;
+      text-align: center;
+      cursor: pointer;
+
+      &.tabbed {
+        background: #efe4e5;
+      }
+    }
+  }
+}
