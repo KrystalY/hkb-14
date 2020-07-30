@@ -21,7 +21,6 @@ export default function DateView() {
   }
 
   function onDateChanged(data) {
-    console.log(data);
     const $month = document.querySelector(`.${component.name} .month`);
     $month.innerHTML = `${data.month}월`;
   }
