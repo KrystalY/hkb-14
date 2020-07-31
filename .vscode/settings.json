@@ -3,6 +3,7 @@
     "@src": "${folder}/client/src",
     "@routes": "${folder}/server/routes",
     "@model": "${folder}/server/model",
-    "@dao": "${folder}/server/dao"
+    "@dao": "${folder}/server/dao",
+    "@service": "${folder}/server/service"
   }
 }
