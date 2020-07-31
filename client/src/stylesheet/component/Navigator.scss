@@ -1,0 +1,37 @@
+@import '@src/stylesheet/_config.scss';
+
+.navigator {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+
+  ul.tab {
+    display: flex;
+    width: 100%;
+    border: 1px solid $color-gray-a;
+    border-radius: 4px;
+    user-select: none;
+
+    li {
+      flex-grow: 1;
+      padding: 14px 20px;
+      border-right: 1px solid $color-gray-a;
+      font-size: 1.1em;
+      font-weight: 400;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:last-child {
+        border-right: 0;
+      }
+
+      &.tabbed {
+        font-weight: 600;
+        background-color: $color-gray-e;
+      }
+    }
+  }
+}

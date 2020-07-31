@@ -1,0 +1,94 @@
+@import '@src/stylesheet/_config.scss';
+
+.record_group {
+  .group_header {
+    display: flex;
+    padding: 12px 0;
+    align-items: center;
+    margin-top: 12px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .date {
+      font-size: 1.2em;
+      font-weight: 600;
+      flex-grow: 1;
+
+      .day {
+        font-weight: 400;
+        color: $color-black-9;
+      }
+    }
+
+    .sum {
+      font-weight: 600;
+      text-align: right;
+
+      .plus {
+        display: inline-block;
+        width: 120px;
+        color: $color-third;
+      }
+
+      .minus {
+        display: inline-block;
+        width: 120px;
+        color: $color-main;
+      }
+    }
+  }
+
+  .group_list {
+    list-style: none;
+    border-top: 1px solid $color-black-6;
+
+    li {
+      display: flex;
+      padding: 14px 0;
+      align-items: center;
+      font-size: 1.1em;
+      font-weight: 500;
+      border-bottom: 1px solid $color-gray-c;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    .category {
+      width: 120px;
+      padding: 10px 0;
+      color: $color-white;
+      background-color: $color-main;
+      border-radius: 16px;
+      margin-right: 24px;
+      text-align: center;
+    }
+
+    .content {
+      flex-grow: 1;
+    }
+
+    .method {
+      width: 100px;
+    }
+
+    .amount {
+      width: 120px;
+      text-align: right;
+      color: $color-main;
+    }
+
+    .income {
+      .category {
+        background-color: $color-third;
+      }
+
+      .amount {
+        color: $color-third;
+      }
+    }
+  }
+}
