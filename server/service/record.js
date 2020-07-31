@@ -22,7 +22,4 @@ function changeFormatOfRecord(records) {
   });
 }
 
-export {
-  findByYearAndMonth,
-  getRecentUpdatedDate
-};
+export { findByYearAndMonth, getRecentUpdatedDate };

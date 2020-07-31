@@ -46,6 +46,4 @@ const validateMonth = function (month) {
   return [false];
 };
 
-export {
-  validateRecordParameter
-};
+export { validateRecordParameter };
