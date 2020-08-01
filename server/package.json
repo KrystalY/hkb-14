@@ -8,8 +8,10 @@
   "_moduleAliases": {
     "@api": "api",
     "@model": "model",
-    "@dao": "dao",
-    "@service": "service"
+    "@controller": "controller",
+    "@util": "util",
+    "@service": "service",
+    "@validator": "validator"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
