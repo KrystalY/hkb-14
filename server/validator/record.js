@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 const validateRecordParameter = async function (req, res, next) {
   const year = req.params.year;
   const month = req.params.month;
