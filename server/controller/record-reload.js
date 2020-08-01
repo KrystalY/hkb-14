@@ -1,7 +1,6 @@
 import { getRecentUpdatedDate } from '@service/record';
 
 const isReloadInMonth = async function (req, res, next) {
-  console.log(req.query);
   const year = req.params.year;
   const month = req.params.month;
   const lastEditedAt = req.query.lastEditedAt;
