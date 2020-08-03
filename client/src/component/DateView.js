@@ -1,7 +1,6 @@
 import Component from '@component/Component.js';
 import { DateViewEvent } from '@constant/Event.js';
-import { templateToElementNodes } from '@utils/generateElement.js';
-import { $, appendChildAll } from '@utils/document.js';
+import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/DateView.scss';
