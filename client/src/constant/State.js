@@ -7,9 +7,9 @@ export const subscribe = (component, key, eventHandler) => {
     };
   }
 
-  Store.state[key].listeners[component.className ?? component.id] = {
+  Store.state[key].listeners[component.className ?? `#${component.id}`] = {
     eventHandler,
-    uid: component?.dataset.uid,
+    uid: component?.dataset?.uid,
   };
 };
 
