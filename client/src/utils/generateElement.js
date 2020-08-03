@@ -1,4 +1,4 @@
-import Component from '@src/component/Component.js';
+import Component from '@component/Component.js';
 
 const parseFromTemplate = (template) => {
   const parser = new DOMParser();

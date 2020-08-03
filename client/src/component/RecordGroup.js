@@ -1,9 +1,9 @@
-import Component from '@src/component/Component.js';
-import { templateToElementNodes } from '@src/utils/generateElement.js';
-import { div } from '@src/utils/defaultElement.js';
+import Component from '@component/Component.js';
+import { StoreEvent } from '@constant/Event.js';
+import { subscribe } from '@constant/State.js';
 
 // eslint-disable-next-line
-import style from '@src/stylesheet/component/RecordGroup.scss';
+import style from '@stylesheet/component/RecordGroup.scss';
 
 export default class RecordGroup extends Component {
   constructor() {

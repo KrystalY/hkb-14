@@ -1,4 +1,4 @@
-import { Store } from '@src/constant/Store.js';
+import { Store } from '@constant/Store.js';
 
 export default class Model {
   constructor() {}

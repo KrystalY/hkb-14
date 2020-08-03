@@ -12,6 +12,10 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.json', '.scss', '.css'],
     alias: {
       '@src': path.resolve(__dirname, './src'),
+      '@component': path.resolve(__dirname, 'src/component'),
+      '@constant': path.resolve(__dirname, 'src/constant'),
+      '@stylesheet': path.resolve(__dirname, 'src/stylesheet'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
     },
   },
   module: {

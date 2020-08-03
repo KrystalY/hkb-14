@@ -1,9 +1,9 @@
-import Component from '@src/component/Component.js';
-import { templateToElementNodes } from '@src/utils/generateElement.js';
-import { div } from '@src/utils/defaultElement.js';
+import Component from '@component/Component.js';
+import { templateToElementNodes } from '@utils/generateElement.js';
+import { div } from '@utils/defaultElement.js';
 
 // eslint-disable-next-line
-import style from '@src/stylesheet/component/Navigator.scss';
+import style from '@stylesheet/component/Navigator.scss';
 
 export default class Navigator extends Component {
   constructor() {

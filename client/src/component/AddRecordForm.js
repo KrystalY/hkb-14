@@ -1,9 +1,9 @@
-import Component from '@src/component/Component.js';
-import { templateToElementNodes } from '@src/utils/generateElement.js';
-import { form } from '@src/utils/defaultElement.js';
+import Component from '@component/Component.js';
+import { templateToElementNodes } from '@utils/generateElement.js';
+import { form } from '@utils/defaultElement.js';
 
 // eslint-disable-next-line
-import style from '@src/stylesheet/component/AddRecordForm.scss';
+import style from '@stylesheet/component/AddRecordForm.scss';
 
 export default class AddRecordForm extends Component {
   constructor() {

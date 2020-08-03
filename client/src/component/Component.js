@@ -1,4 +1,4 @@
-import { subscribe } from '@src/constant/State';
+import { subscribe } from '@constant/State.js';
 
 export default class Component {
   constructor(args) {

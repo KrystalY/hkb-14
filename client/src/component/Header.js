@@ -1,9 +1,9 @@
-import Component from '@src/component/Component.js';
-import { templateToElementNodes } from '@src/utils/generateElement.js';
-import { header } from '@src/utils/defaultElement.js';
+import Component from '@component/Component.js';
+import { templateToElementNodes } from '@utils/generateElement.js';
+import { header } from '@utils/defaultElement.js';
 
 // eslint-disable-next-line
-import style from '@src/stylesheet/component/Header.scss';
+import style from '@stylesheet/component/Header.scss';
 
 export default class Header extends Component {
   constructor() {
