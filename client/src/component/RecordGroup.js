@@ -26,7 +26,7 @@ export default class RecordGroup extends Component {
 
   initSubscribers() {
     const subscribers = {
-      [StoreEvent.onUpdated]: this.renderWithDidMount,
+      [StoreEvent.onUpdated]: this.render,
     };
     this.setSubscribers(subscribers);
   }

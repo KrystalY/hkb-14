@@ -1,4 +1,7 @@
 const Event = {
+  PageEvent: {
+    onAppendDone: 'Page:onAppendDone',
+  },
   StoreEvent: {
     onUpdated: 'Store:onUpdated',
   },
@@ -7,6 +10,7 @@ const Event = {
   },
 };
 
+export const PageEvent = Event.PageEvent;
 export const StoreEvent = Event.StoreEvent;
 export const DateViewEvent = Event.DateViewEvent;
 export default Event;

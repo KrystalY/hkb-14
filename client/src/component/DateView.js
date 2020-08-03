@@ -5,7 +5,7 @@ import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
 // eslint-disable-next-line
 import style from '@stylesheet/component/DateView.scss';
 
-export default class AddRecordForm extends Component {
+export default class DateView extends Component {
   constructor() {
     const attribute = {
       tagName: 'div',
@@ -13,7 +13,7 @@ export default class AddRecordForm extends Component {
     };
 
     super({ attribute });
-    Object.setPrototypeOf(this, AddRecordForm.prototype);
+    Object.setPrototypeOf(this, DateView.prototype);
 
     this.initSubscribers();
     this.init();

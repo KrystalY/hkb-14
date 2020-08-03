@@ -9,6 +9,6 @@ export default class App {
   }
 
   start() {
-    this.$container.appendChild(new MainPage().render());
+    new MainPage(this.$container).render();
   }
 }

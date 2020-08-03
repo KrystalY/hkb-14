@@ -1,5 +1,5 @@
 import Component from '@component/Component.js';
-import { appendChildAll, templateToElementNodes } from '@utils/document.js';
+import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/Navigator.scss';
@@ -23,12 +23,16 @@ export default class Navigator extends Component {
     this.setSubscribers(subscribers);
   }
 
+  componentDidMount() {
+    console.dir($(`.${this.attribute.className}`));
+  }
+
   render() {
     const template = `
     <ul class="tab">
-      <li class="tabbed">내역</li>
-      <li>달력</li>
-      <li>통계</li>
+      <li class="tabbed" value="">내역</li>
+      <li value="calendar">달력</li>
+      <li value="statistics">통계</li>
     </ul>
     `;
 

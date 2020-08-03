@@ -1,5 +1,6 @@
 import { subscribe } from '@constant/State.js';
 import { createElement } from '@utils/document.js';
+import { PageEvent } from '@constant/Event.js';
 
 export default class Component {
   constructor(args) {
@@ -19,13 +20,8 @@ export default class Component {
     this.applySubscribers();
 
     if (this.isRenderAfterEvent === false) {
-      this.renderWithDidMount();
+      this.render();
     }
-  }
-
-  renderWithDidMount(data) {
-    this.render(data);
-    this.componentDidMount();
   }
 
   setSubscribers(subscribers) {
@@ -33,6 +29,10 @@ export default class Component {
   }
 
   applySubscribers() {
+    if (this.componentDidMount) {
+      this.subscribers[PageEvent.onAppendDone] = this.componentDidMount;
+    }
+
     if (!this.subscribers) {
       return;
     }
@@ -45,8 +45,4 @@ export default class Component {
   getElement() {
     return this.element;
   }
-
-  // call this function after render
-  componentDidMount() {}
-  render() {}
 }
