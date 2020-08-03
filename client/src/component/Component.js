@@ -22,7 +22,7 @@ export default class Component {
     }
 
     Object.entries(this.subscribers).map(([key, eventHandler]) => {
-      subscribe(this.attribute, key, eventHandler);
+      subscribe(this.attribute, key, eventHandler.bind(this));
     });
   }
 
