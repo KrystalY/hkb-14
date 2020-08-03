@@ -1,5 +1,5 @@
 import { subscribe } from '@constant/State.js';
-import { createElement } from '@utils/generateElement.js';
+import { createElement } from '@utils/document.js';
 
 export default class Component {
   constructor(args) {

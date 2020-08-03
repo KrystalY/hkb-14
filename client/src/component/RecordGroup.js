@@ -1,8 +1,7 @@
 import Component from '@component/Component.js';
 import { StoreEvent } from '@constant/Event.js';
-import { templateToElementNodes } from '@utils/generateElement.js';
-import { $, appendChildAll } from '@utils/document.js';
-import { analyzeDatetime } from '@utils/datetime.js';
+import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
+import { analyzeDatetime } from '@utils/helper.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/RecordGroup.scss';
@@ -38,6 +37,15 @@ export default class RecordGroup extends Component {
     return `
     <div class="date">
       ${dateObj.month}월 ${dateObj.date}일 <span class="day">(${dateObj.day})</span>
+    </div>
+    `;
+  }
+
+  createGroupSumIndicator(sum) {
+    return `
+    <div class="sum">
+      <span class="plus">+100,000원</span>
+      <span class="minus">-2,130,000원</span>
     </div>
     `;
   }

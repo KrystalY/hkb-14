@@ -1,5 +1,5 @@
 // referenced wooact/defaultElement (github.com/naamoonoo)
-import { createElement } from './generateElement.js';
+import { createElement } from './document.js';
 
 const htmlTagNames = [
   'a',
