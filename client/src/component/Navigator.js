@@ -1,6 +1,6 @@
 import Component from '@component/Component.js';
 import { templateToElementNodes } from '@utils/generateElement.js';
-import { div } from '@utils/defaultElement.js';
+import { appendChildAll } from '@utils/document.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/Navigator.scss';
@@ -8,6 +8,7 @@ import style from '@stylesheet/component/Navigator.scss';
 export default class Navigator extends Component {
   constructor() {
     const attribute = {
+      tagName: 'div',
       className: 'navigator',
     };
 
@@ -33,6 +34,6 @@ export default class Navigator extends Component {
     `;
 
     const innerNode = templateToElementNodes(template);
-    return div(this.attribute, ...innerNode);
+    appendChildAll(this.element, innerNode);
   }
 }

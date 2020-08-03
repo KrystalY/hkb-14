@@ -1,6 +1,6 @@
 import Component from '@component/Component.js';
 import { templateToElementNodes } from '@utils/generateElement.js';
-import { form } from '@utils/defaultElement.js';
+import { appendChildAll } from '@utils/document.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/AddRecordForm.scss';
@@ -8,6 +8,7 @@ import style from '@stylesheet/component/AddRecordForm.scss';
 export default class AddRecordForm extends Component {
   constructor() {
     const attribute = {
+      tagName: 'form',
       className: 'add_record_form',
     };
 
@@ -79,6 +80,6 @@ export default class AddRecordForm extends Component {
     </div>`;
 
     const innerNode = templateToElementNodes(template);
-    return form(this.attribute, ...innerNode);
+    appendChildAll(this.element, innerNode);
   }
 }

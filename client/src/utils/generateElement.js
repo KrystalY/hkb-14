@@ -26,6 +26,11 @@ export const createElement = (tagName, attributes, ...childNodes) => {
 
   if (attributes) {
     for (const [key, value] of Object.entries(attributes)) {
+      if (key === 'tagName') {
+        // tagName skip
+        continue;
+      }
+
       if (key === 'className') {
         element.className = value;
         continue;

@@ -1,6 +1,6 @@
 import Component from '@component/Component.js';
 import { templateToElementNodes } from '@utils/generateElement.js';
-import { header } from '@utils/defaultElement.js';
+import { appendChildAll } from '@utils/document.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/Header.scss';
@@ -8,6 +8,7 @@ import style from '@stylesheet/component/Header.scss';
 export default class Header extends Component {
   constructor() {
     const attribute = {
+      tagName: 'header',
       className: 'header',
     };
 
@@ -27,11 +28,13 @@ export default class Header extends Component {
     const template = `
     <div class="logo">가계부 서비스</div>
     <div class="menu">
-      <div><a href="#">결제 수단 관리</a></div>
+      <div class="menu_item">
+        <a href="#">결제 수단 관리</a>
+      </div>
     </div>
     `;
 
     const innerNode = templateToElementNodes(template);
-    return header(this.attribute, ...innerNode);
+    appendChildAll(this.element, innerNode);
   }
 }
