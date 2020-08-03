@@ -1,6 +1,7 @@
 class StoreContainer {
   constructor() {
     this.state = {};
+    this.record = [];
   }
 }
 
