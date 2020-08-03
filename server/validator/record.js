@@ -8,14 +8,14 @@ import {
 const validateRecordParameter = async function (req, res, next) {
   const year = req.params.year;
   const month = req.params.month;
-  let [isError, message] = validateYear(year);
-  if (isError) {
-    sendResponseMessage(res, message);
+  const [isErrorInYear, errorMessageInYear] = validateYear(year);
+  if (isErrorInYear) {
+    sendResponseMessage(res, errorMessageInYear);
     return;
   }
-  [isError, message] = validateMonth(month);
-  if (isError) {
-    sendResponseMessage(res, message);
+  const [isErrorInMonth, errorMessageInMonth] = validateMonth(month);
+  if (isErrorInMonth) {
+    sendResponseMessage(res, errorMessageInMonth);
     return;
   }
   next();
@@ -25,19 +25,19 @@ const validateRecordReloadParameter = async function (req, res, next) {
   const year = req.params.year;
   const month = req.params.month;
   const lastEditedAt = req.query.lastEditedAt;
-  let [isError, message] = validateYear(year);
-  if (isError) {
-    sendResponseMessage(res, message);
+  const [isErrorInYear, errorMessageInYear] = validateYear(year);
+  if (isErrorInYear) {
+    sendResponseMessage(res, errorMessageInYear);
     return;
   }
-  [isError, message] = validateMonth(month);
-  if (isError) {
-    sendResponseMessage(res, message);
+  const [isErrorInMonth, errorMessageInMonth] = validateMonth(month);
+  if (isErrorInMonth) {
+    sendResponseMessage(res, errorMessageInMonth);
     return;
   }
-  [isError, message] = validateDate(lastEditedAt);
-  if (isError) {
-    sendResponseMessage(res, message);
+  const [isErrorInDate, errorMessageInDate] = validateDate(lastEditedAt);
+  if (isErrorInDate) {
+    sendResponseMessage(res, errorMessageInDate);
     return;
   }
   next();
