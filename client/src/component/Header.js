@@ -6,12 +6,12 @@ import { header } from '@src/utils/defaultElement.js';
 import style from '@src/stylesheet/component/Header.scss';
 
 export default class Header extends Component {
-  constructor(state) {
+  constructor() {
     const attribute = {
       className: 'header',
     };
 
-    super({ attribute, state });
+    super({ attribute });
     Object.setPrototypeOf(this, Header.prototype);
 
     this.initSubscribers();

@@ -6,12 +6,12 @@ import { div } from '@src/utils/defaultElement.js';
 import style from '@src/stylesheet/component/RecordGroup.scss';
 
 export default class RecordGroup extends Component {
-  constructor(state) {
+  constructor() {
     const attribute = {
       className: 'record_group',
     };
 
-    super({ attribute, state });
+    super({ attribute });
     Object.setPrototypeOf(this, RecordGroup.prototype);
 
     this.initSubscribers();

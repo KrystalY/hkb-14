@@ -6,12 +6,12 @@ import { form } from '@src/utils/defaultElement.js';
 import style from '@src/stylesheet/component/AddRecordForm.scss';
 
 export default class AddRecordForm extends Component {
-  constructor(state) {
+  constructor() {
     const attribute = {
       className: 'add_record_form',
     };
 
-    super({ attribute, state });
+    super({ attribute });
     Object.setPrototypeOf(this, AddRecordForm.prototype);
 
     this.initSubscribers();

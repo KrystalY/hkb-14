@@ -6,12 +6,12 @@ import { div } from '@src/utils/defaultElement.js';
 import style from '@src/stylesheet/component/Navigator.scss';
 
 export default class Navigator extends Component {
-  constructor(state) {
+  constructor() {
     const attribute = {
       className: 'navigator',
     };
 
-    super({ attribute, state });
+    super({ attribute });
     Object.setPrototypeOf(this, Navigator.prototype);
 
     this.initSubscribers();
