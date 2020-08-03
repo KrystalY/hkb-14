@@ -6,8 +6,9 @@ export const getCurrentDatetime = () => {
 export const dayStr = ['일', '월', '화', '수', '목', '금', '토'];
 export const analyzeDatetime = (datetimeStr) => {
   const pad = (str) => str.toString().padStart(2, '0');
+  const datetime = datetimeStr.replace(/-/g, '/');
 
-  const dateObj = datetimeStr ? new Date(datetimeStr) : new Date();
+  const dateObj = datetime ? new Date(datetime) : new Date();
   const year = dateObj.getFullYear();
   const month = pad(dateObj.getMonth() + 1);
   const date = pad(dateObj.getDate());
