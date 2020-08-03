@@ -24,7 +24,7 @@ export default class MainPage {
       ${DateView()}
       ${Navigator()}
       <div class="section">
-        ${AddRecordForm()}
+        ${new AddRecordForm().render()};
         ${RecordGroup()}
       </div>
     </div>

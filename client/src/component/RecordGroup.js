@@ -1,13 +1,30 @@
+import Component from '@src/component/Component.js';
+import { templateToElementNodes } from '@src/utils/generateElement.js';
+import { div } from '@src/utils/defaultElement.js';
+
 // eslint-disable-next-line
 import style from '@src/stylesheet/component/RecordGroup.scss';
 
-export default function RecordGroup() {
-  const component = {
-    name: 'record_group',
-  };
+export default class RecordGroup extends Component {
+  constructor(state) {
+    const attribute = {
+      className: 'record_group',
+    };
 
-  function render() {
-    const html = `
+    super({ attribute, state });
+    Object.setPrototypeOf(this, RecordGroup.prototype);
+
+    this.initSubscribers();
+    this.init();
+  }
+
+  initSubscribers() {
+    const subscribers = {};
+    this.setSubscribers(subscribers);
+  }
+
+  render() {
+    const template = `
     <div class="group_header">
       <div class="date">
         7월 31일 <span class="day">(금)</span>
@@ -62,10 +79,7 @@ export default function RecordGroup() {
     </ul>
     `;
 
-    const $recordGroup = document.querySelector(`.${component.name}`);
-    $recordGroup.innerHTML = html;
+    const innerNode = templateToElementNodes(template);
+    return div(this.attribute, ...innerNode);
   }
-
-  setTimeout(render, 0);
-  return `<div class=${component.name}></div>`;
 }
