@@ -1,13 +1,31 @@
+import Component from '@component/Component.js';
+import { templateToElementNodes } from '@utils/generateElement.js';
+import { appendChildAll } from '@utils/document.js';
+
 // eslint-disable-next-line
-import style from '@src/stylesheet/component/AddRecordForm.scss';
+import style from '@stylesheet/component/AddRecordForm.scss';
 
-export default function AddRecordForm() {
-  const component = {
-    name: 'add_record_form',
-  };
+export default class AddRecordForm extends Component {
+  constructor() {
+    const attribute = {
+      tagName: 'form',
+      className: 'add_record_form',
+    };
 
-  function render() {
-    const html = `
+    super({ attribute });
+    Object.setPrototypeOf(this, AddRecordForm.prototype);
+
+    this.initSubscribers();
+    this.init();
+  }
+
+  initSubscribers() {
+    const subscribers = {};
+    this.setSubscribers(subscribers);
+  }
+
+  render() {
+    const template = `
     <div class="block">
       <div class="item">
         <div class="title">분류</div>
@@ -59,13 +77,9 @@ export default function AddRecordForm() {
     </div>
     <div class="footer">
       <button class="btn_submit">등록</button>
-    </div>
-    `;
+    </div>`;
 
-    const $addRecordForm = document.querySelector(`.${component.name}`);
-    $addRecordForm.innerHTML = html;
+    const innerNode = templateToElementNodes(template);
+    appendChildAll(this.element, innerNode);
   }
-
-  setTimeout(render, 0);
-  return `<form class=${component.name}></form>`;
 }

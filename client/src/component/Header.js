@@ -1,23 +1,40 @@
+import Component from '@component/Component.js';
+import { templateToElementNodes } from '@utils/generateElement.js';
+import { appendChildAll } from '@utils/document.js';
+
 // eslint-disable-next-line
-import style from '@src/stylesheet/component/Header.scss';
+import style from '@stylesheet/component/Header.scss';
 
-export default function Header() {
-  const component = {
-    name: 'header',
-  };
+export default class Header extends Component {
+  constructor() {
+    const attribute = {
+      tagName: 'header',
+      className: 'header',
+    };
 
-  function render() {
-    const html = `
+    super({ attribute });
+    Object.setPrototypeOf(this, Header.prototype);
+
+    this.initSubscribers();
+    this.init();
+  }
+
+  initSubscribers() {
+    const subscribers = {};
+    this.setSubscribers(subscribers);
+  }
+
+  render() {
+    const template = `
     <div class="logo">가계부 서비스</div>
     <div class="menu">
-      <div><a href="#">결제 수단 관리</a></div>
+      <div class="menu_item">
+        <a href="#">결제 수단 관리</a>
+      </div>
     </div>
     `;
 
-    const $header = document.querySelector(`.${component.name}`);
-    $header.innerHTML = html;
+    const innerNode = templateToElementNodes(template);
+    appendChildAll(this.element, innerNode);
   }
-
-  setTimeout(render, 0);
-  return `<header class=${component.name}></header>`;
 }

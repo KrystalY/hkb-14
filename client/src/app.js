@@ -1,7 +1,7 @@
 import MainPage from '@src/page/MainPage.js';
 
 // eslint-disable-next-line
-import style from '@src/stylesheet/base.scss';
+import style from '@stylesheet/base.scss';
 
 export default class App {
   constructor(container) {
@@ -9,6 +9,6 @@ export default class App {
   }
 
   start() {
-    this.$container.innerHTML = new MainPage().render();
+    this.$container.appendChild(new MainPage().render());
   }
 }

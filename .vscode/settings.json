@@ -1,6 +1,21 @@
 {
   "path-autocomplete.pathMappings": {
     "@src": "${folder}/client/src",
+    "@component": "${folder}/client/src/component",
+    "@constant": "${folder}/client/src/constant",
+    "@stylesheet": "${folder}/client/src/stylesheet",
+    "@utils": "${folder}/client/src/utils",
+    "@routes": "${folder}/server/routes",
+    "@model": "${folder}/server/model",
+    "@dao": "${folder}/server/dao",
+    "@service": "${folder}/server/service"
+  },
+  "vs-alias-jump.alias": {
+    "@src": "${folder}/client/src",
+    "@component": "${folder}/client/src/component",
+    "@constant": "${folder}/client/src/constant",
+    "@stylesheet": "${folder}/client/src/stylesheet",
+    "@utils": "${folder}/client/src/utils",
     "@routes": "${folder}/server/routes",
     "@model": "${folder}/server/model",
     "@dao": "${folder}/server/dao",

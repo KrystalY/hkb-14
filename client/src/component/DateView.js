@@ -1,32 +1,45 @@
-import { subscribe } from '@src/constant/State.js';
-import { DateViewEvent } from '@src/constant/Event.js';
+import Component from '@component/Component.js';
+import { DateViewEvent } from '@constant/Event.js';
+import { templateToElementNodes } from '@utils/generateElement.js';
+import { $, appendChildAll } from '@utils/document.js';
 
 // eslint-disable-next-line
-import style from '@src/stylesheet/component/DateView.scss';
+import style from '@stylesheet/component/DateView.scss';
 
-export default function DateView() {
-  const component = {
-    name: 'date_view',
-  };
+export default class AddRecordForm extends Component {
+  constructor() {
+    const attribute = {
+      tagName: 'div',
+      className: 'date_view',
+    };
 
-  function render() {
-    const html = `
+    super({ attribute });
+    Object.setPrototypeOf(this, AddRecordForm.prototype);
+
+    this.initSubscribers();
+    this.init();
+  }
+
+  onDateChanged(data) {
+    const $month = $(`.${this.attribute.className} .month`);
+    $month.innerHTML = `${data.month}월`;
+  }
+
+  initSubscribers() {
+    const subscribers = {
+      [DateViewEvent.onDateChanged]: this.onDateChanged,
+    };
+    this.setSubscribers(subscribers);
+  }
+
+  render() {
+    const template = `
     <a class="prev" href="#"><span class="arrow"></span></a>
     <div class="month">7월</div>
     <a class="next" href="#"><span class="arrow-right"></span></a>
     `;
 
-    const $dateview = document.querySelector(`.${component.name}`);
-    $dateview.innerHTML = html;
+    const innerNode = templateToElementNodes(template);
+    appendChildAll(this.element, innerNode);
   }
-
-  function onDateChanged(data) {
-    const $month = document.querySelector(`.${component.name} .month`);
-    $month.innerHTML = `${data.month}월`;
-  }
-
-  subscribe(component, DateViewEvent.onDateChanged, onDateChanged);
-
-  setTimeout(render, 0);
-  return `<div class=${component.name} data-uid=${component.uid}></div>`;
 }

@@ -12,6 +12,42 @@
         "src/index.json",
         "src/index.scss",
         "src/index.css"
+      ],
+      "@component/*": ["src/component/*"],
+      "@component": [
+        "src/component/index.tsx",
+        "src/component/index.ts",
+        "src/component/index.js",
+        "src/component/index.json",
+        "src/component/index.scss",
+        "src/component/index.css"
+      ],
+      "@constant/*": ["src/constant/*"],
+      "@constant": [
+        "src/constant/index.ts",
+        "src/constant/index.tsx",
+        "src/constant/index.js",
+        "src/constant/index.json",
+        "src/constant/index.scss",
+        "src/constant/index.css"
+      ],
+      "@stylesheet/*": ["src/stylesheet/*"],
+      "@stylesheet": [
+        "src/stylesheet/index.ts",
+        "src/stylesheet/index.tsx",
+        "src/stylesheet/index.js",
+        "src/stylesheet/index.json",
+        "src/stylesheet/index.scss",
+        "src/stylesheet/index.css"
+      ],
+      "@utils/*": ["src/utils/*"],
+      "@utils": [
+        "src/utils/index.ts",
+        "src/utils/index.tsx",
+        "src/utils/index.js",
+        "src/utils/index.json",
+        "src/utils/index.scss",
+        "src/utils/index.css"
       ]
     }
   }
