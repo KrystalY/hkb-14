@@ -8,11 +8,14 @@
   "_moduleAliases": {
     "@api": "api",
     "@model": "model",
-    "@dao": "dao",
-    "@service": "service"
+    "@controller": "controller",
+    "@util": "util",
+    "@service": "service",
+    "@validator": "validator"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
+    "date-fns": "^2.15.0",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.3",

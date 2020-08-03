@@ -1,49 +1,46 @@
-import moment from 'moment';
+import {
+  validateYear,
+  validateMonth,
+  validateDate,
+  sendResponseMessage,
+} from './common';
 
 const validateRecordParameter = async function (req, res, next) {
   const year = req.params.year;
   const month = req.params.month;
-  let [isError, message] = validateYear(year);
-  if (isError) {
-    res
-      .status(400)
-      .json({
-        message,
-      })
-      .end();
+  const [isErrorInYear, errorMessageInYear] = validateYear(year);
+  if (isErrorInYear) {
+    sendResponseMessage(res, errorMessageInYear);
     return;
   }
-  [isError, message] = validateMonth(month);
-  if (isError) {
-    res
-      .status(400)
-      .json({
-        message,
-      })
-      .end();
+  const [isErrorInMonth, errorMessageInMonth] = validateMonth(month);
+  if (isErrorInMonth) {
+    sendResponseMessage(res, errorMessageInMonth);
     return;
   }
   next();
 };
 
-const validateYear = function (year) {
-  if (isNaN(year)) {
-    return [true, 'year is must be number'];
+const validateRecordReloadParameter = async function (req, res, next) {
+  const year = req.params.year;
+  const month = req.params.month;
+  const lastEditedAt = req.query.lastEditedAt;
+  const [isErrorInYear, errorMessageInYear] = validateYear(year);
+  if (isErrorInYear) {
+    sendResponseMessage(res, errorMessageInYear);
+    return;
   }
-  if (year < 1900 || year > new Date().getFullYear() || year.length < 4) {
-    return [true, 'year is out of range'];
+  const [isErrorInMonth, errorMessageInMonth] = validateMonth(month);
+  if (isErrorInMonth) {
+    sendResponseMessage(res, errorMessageInMonth);
+    return;
   }
-  return [false];
+  const [isErrorInDate, errorMessageInDate] = validateDate(lastEditedAt);
+  if (isErrorInDate) {
+    sendResponseMessage(res, errorMessageInDate);
+    return;
+  }
+  next();
 };
 
-const validateMonth = function (month) {
-  if (isNaN(month)) {
-    return [true, 'month is must be number'];
-  }
-  if (month < 1 || month > 12) {
-    return [true, 'month is out of range'];
-  }
-  return [false];
-};
-
-export { validateRecordParameter };
+export { validateRecordParameter, validateRecordReloadParameter };
