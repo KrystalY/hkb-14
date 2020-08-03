@@ -6,6 +6,7 @@ import RecordGroup from '@src/component/RecordGroup.js';
 
 import { DateViewEvent } from '@src/constant/Event.js';
 import { notify } from '@src/constant/State.js';
+import { div } from '@src/utils/defaultElement.js';
 
 // eslint-disable-next-line
 import style from '@src/stylesheet/main-page.scss';
@@ -16,18 +17,17 @@ export default class MainPage {
   render() {
     setTimeout(() => {
       notify(DateViewEvent.onDateChanged, { month: 7 });
-    }, 5000);
+    }, 1000);
 
-    return `
-    ${Header()}
-    <div class="main_page">
-      ${DateView()}
-      ${Navigator()}
-      <div class="section">
-        ${new AddRecordForm().render()};
-        ${RecordGroup()}
-      </div>
-    </div>
-    `;
+    return div(
+      {},
+      new Header(),
+      div(
+        { className: 'main_page' },
+        new DateView(),
+        new Navigator(),
+        div({ className: 'section' }, new AddRecordForm(), new RecordGroup()),
+      ),
+    );
   }
 }
