@@ -1,6 +1,6 @@
 import apis from '@src/model/apis.js';
 import { Store } from '@constant/Store.js';
-import { PageEvent, StoreEvent, RouterEvent } from '@constant/Event.js';
+import { StoreEvent, RouterEvent } from '@constant/Event.js';
 import { subscribe, notify } from '@constant/State.js';
 import { CATEGORY } from '@constant/constant.js';
 
@@ -39,8 +39,10 @@ export default class Model {
   }
 
   async getRecord(data) {
-    console.dir(data);
-    const { year, month } = data;
+    let [, , year, month] = data.path.split('/');
+    year = !year ? new Date().getFullYear() : year;
+    month = !month ? new Date().getMonth() + 1 : month;
+
     await this.setDefaultData();
     await this.setRecord(year, month);
     notify(StoreEvent.onUpdated, { ...Store });
