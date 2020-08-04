@@ -61,5 +61,5 @@ export const getLastDateOfMonth = (year, month) => {
 };
 
 export const getFirstDayOfWeekInMonth = (year, month) => {
-  return new Date(year, month, 1).getDay();
+  return new Date(year, month - 1, 1).getDay();
 };
