@@ -1,6 +1,6 @@
 import apis from '@src/model/apis.js';
 import { Store } from '@constant/Store.js';
-import { PageEvent, StoreEvent } from '@constant/Event.js';
+import { PageEvent, StoreEvent, RouterEvent } from '@constant/Event.js';
 import { subscribe, notify } from '@constant/State.js';
 import { CATEGORY } from '@constant/constant.js';
 
@@ -24,7 +24,11 @@ const customCategory = {
 
 export default class Model {
   constructor() {
-    subscribe({ uid: Model }, PageEvent.onAppendDone, () => this.getRecord());
+    subscribe(
+      { uid: Model },
+      RouterEvent.onStateChanged,
+      this.getRecord.bind(this),
+    );
   }
 
   convertData(item) {
@@ -35,13 +39,10 @@ export default class Model {
   }
 
   async getRecord(data) {
-    const { year, month, type } = { year: 2020, month: 7 };
+    console.dir(data);
+    const { year, month } = data;
     await this.setDefaultData();
     await this.setRecord(year, month);
-    if (type) {
-      Store.records = Store.records.filter((record) => record.type == type);
-    }
-
     notify(StoreEvent.onUpdated, { ...Store });
   }
 
