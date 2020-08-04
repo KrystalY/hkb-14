@@ -1,0 +1,47 @@
+@import '@stylesheet/_config.scss';
+
+.calendar {
+  border: 1px solid $color-gray-c;
+  width: 100%;
+  table-layout: fixed;
+  .table_header_row {
+    height: 30px;
+    text-align: left;
+    text-indent: 10px;
+    .table_header {
+      vertical-align: middle;
+    }
+  }
+  .table_data_row {
+    .table_data {
+      height: 100px;
+      text-indent: 10px;
+      padding-top: 5px;
+      position: relative;
+      overflow-x: scroll;
+      .summary_date {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        .income,
+        .outcome {
+          display: block;
+          text-align: right;
+        }
+        .income {
+          color: $color-main;
+        }
+        .outcome {
+          color: $color-red-d;
+        }
+      }
+    }
+  }
+  .table_header,
+  .table_data {
+    border: 1px solid $color-gray-e;
+  }
+  .sunday {
+    color: $color-red-d;
+  }
+}
