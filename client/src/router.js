@@ -5,7 +5,7 @@ import { Store } from '@constant/Store.js';
 export default class Router {
   constructor() {
     this.attribute = {
-      className: 'router',
+      uid: 'router',
     };
     this.applySubscribers();
     this.addPopStateListener();
@@ -21,9 +21,31 @@ export default class Router {
   applySubscribers() {
     subscribe(
       this.attribute,
+      RouterEvent.changeUrl,
+      this.onChangeUrl.bind(this),
+    );
+    subscribe(
+      this.attribute,
       RouterEvent.onStateChanged,
       this.onStateChanged.bind(this),
     );
+  }
+
+  onChangeUrl(data) {
+    let path = data.path;
+    let [, menu, year, month] = data.path.split('/');
+    year = !year ? new Date().getFullYear() : year;
+    month = !month ? new Date().getMonth() + 1 : month;
+
+    if (data.useCurrentData) {
+      const [, , currentYear, currentMonth] = location.pathname.split('/');
+      year = currentYear ? currentYear : year;
+      month = currentMonth ? currentMonth : month;
+      const menuUrl = menu ? `/${menu}/` : '';
+      path = `${menuUrl}${year}/${month}`;
+    }
+
+    notify(RouterEvent.onStateChanged, { path, menu, year, month });
   }
 
   addPopStateListener() {

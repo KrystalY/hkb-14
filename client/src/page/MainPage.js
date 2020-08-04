@@ -46,7 +46,11 @@ export default class MainPage {
           new RecordGroupList(),
         );
       default:
-        return div({ className: 'section' }, new AddRecordForm());
+        return div(
+          { className: 'section' },
+          new AddRecordForm(),
+          new RecordGroupList(),
+        );
     }
   }
 
