@@ -16,6 +16,10 @@ export const subscribe = (component, key, eventHandler) => {
 };
 
 export const notify = (key, data, targetUid = null) => {
+  if (!Store.state[key]) {
+    return;
+  }
+
   if (targetUid) {
     Object.values(Store.state[key].listeners).some(({ eventHandler, uid }) => {
       if (uid === targetUid) {
