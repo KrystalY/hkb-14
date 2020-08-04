@@ -16,12 +16,4 @@ export default class Layout {
       div({}, new Header(), div({ className: 'content' })),
     );
   }
-
-  renderMainPage() {
-    return new MainPage().render();
-  }
-
-  renderLoginPage() {
-    return div({ className: 'login_page' });
-  }
 }

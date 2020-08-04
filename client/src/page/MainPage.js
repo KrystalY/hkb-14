@@ -33,7 +33,6 @@ export default class MainPage {
 
   onStateChanged({ path }) {
     this.clear();
-    console.log(path);
     if (path !== '/login') {
       this.render(path);
     }

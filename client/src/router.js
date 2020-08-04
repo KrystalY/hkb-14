@@ -17,7 +17,6 @@ export default class Router {
       return;
     }
     history.pushState(Store.record, '', path);
-    console.log(window.history.length);
   }
 
   applySubscribers() {
