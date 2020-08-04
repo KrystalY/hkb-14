@@ -4,7 +4,6 @@ import { Store } from '@constant/Store.js';
 
 export default class Router {
   constructor() {
-    this.path = '/';
     this.attribute = {
       className: 'router',
     };
@@ -16,7 +15,7 @@ export default class Router {
     if (byPopState) {
       return;
     }
-    history.pushState(Store.record, '', path);
+    history.pushState({}, '', path);
   }
 
   applySubscribers() {

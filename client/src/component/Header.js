@@ -12,7 +12,6 @@ export default class Header extends Component {
     };
 
     super({ attribute });
-    Object.setPrototypeOf(this, Header.prototype);
 
     this.initSubscribers();
     this.init();

@@ -7,13 +7,19 @@ export const subscribe = (component, key, eventHandler) => {
     };
   }
 
-  Store.state[key].listeners[component.className ?? `#${component.id}`] = {
+  Store.state[key].listeners[
+    component.uid ?? component.className ?? `#${component.id}`
+  ] = {
     eventHandler,
-    uid: component?.dataset?.uid,
+    uid: component.uid ?? component.dataset?.uid,
   };
 };
 
 export const notify = (key, data, targetUid = null) => {
+  if (!Store.state[key]) {
+    return;
+  }
+
   if (targetUid) {
     Object.values(Store.state[key].listeners).some(({ eventHandler, uid }) => {
       if (uid === targetUid) {

@@ -12,7 +12,6 @@ export default class AddRecordForm extends Component {
     };
 
     super({ attribute });
-    Object.setPrototypeOf(this, AddRecordForm.prototype);
 
     this.initSubscribers();
     this.init();

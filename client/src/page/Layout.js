@@ -1,6 +1,6 @@
-import Header from '@src/component/Header.js';
+import Header from '@component/Header.js';
 import MainPage from '@src/page/MainPage';
-import { div } from '@src/utils/defaultElement.js';
+import { div } from '@utils/defaultElement.js';
 import { $ } from '@utils/document.js';
 
 export default class Layout {

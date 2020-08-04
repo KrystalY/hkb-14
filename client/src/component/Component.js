@@ -8,7 +8,6 @@ export default class Component {
     // 이벤트 이후에 렌더링을 원하는 경우, true로 설정합니다.
     this.isRenderAfterEvent = args?.isRenderAfterEvent ?? false;
     this.attribute = args.attribute;
-    Object.setPrototypeOf(this, Component.prototype);
   }
 
   initElement() {

@@ -1,13 +1,8 @@
 import Navigator from '@component/Navigator.js';
 import DateView from '@component/DateView.js';
 import AddRecordForm from '@component/AddRecordForm.js';
-import RecordGroup from '@component/RecordGroup.js';
-import {
-  PageEvent,
-  StoreEvent,
-  DateViewEvent,
-  RouterEvent,
-} from '@constant/Event.js';
+import RecordGroupList from '@component/RecordGroupList.js';
+import { PageEvent, DateViewEvent, RouterEvent } from '@constant/Event.js';
 import { notify, subscribe } from '@constant/State.js';
 import { div } from '@utils/defaultElement.js';
 
@@ -48,21 +43,16 @@ export default class MainPage {
         return div(
           { className: 'section' },
           new AddRecordForm(),
-          new RecordGroup(),
+          new RecordGroupList(),
         );
       default:
-        return div(
-          { className: 'section' },
-          new AddRecordForm(),
-          new RecordGroup(),
-        );
+        return div({ className: 'section' }, new AddRecordForm());
     }
   }
 
   render(path) {
     setTimeout(() => {
       notify(DateViewEvent.onDateChanged, { month: 12 });
-      notify(StoreEvent.onUpdated, { date: '2020-08-03 11:11:11' });
     }, 1000);
 
     this.$container.appendChild(
