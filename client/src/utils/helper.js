@@ -55,3 +55,11 @@ export function guid() {
   }
   return _p8() + _p8(true) + _p8(true) + _p8();
 }
+
+export const getLastDateOfMonth = (year, month) => {
+  return new Date(year, month, 0).getDate();
+};
+
+export const getFirstDayOfWeekInMonth = (year, month) => {
+  return new Date(year, month, 1).getDay();
+};
