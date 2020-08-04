@@ -13,7 +13,6 @@ export default class DateView extends Component {
     };
 
     super({ attribute });
-    Object.setPrototypeOf(this, DateView.prototype);
 
     this.initSubscribers();
     this.init();

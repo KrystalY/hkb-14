@@ -12,7 +12,6 @@ export default class Navigator extends Component {
     };
 
     super({ attribute });
-    Object.setPrototypeOf(this, Navigator.prototype);
 
     this.initSubscribers();
     this.init();
