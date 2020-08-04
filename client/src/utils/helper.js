@@ -33,6 +33,14 @@ export const analyzeDatetime = (datetimeStr) => {
   };
 };
 
+export const groupBy = (obj, key) => {
+  return obj.reduce((pv, cv) => {
+    pv[cv[key]] = pv[cv[key]] ?? [];
+    pv[cv[key]].push(cv);
+    return pv;
+  }, {});
+};
+
 /**
  * Generates a GUID string.
  * @returns {string} The generated GUID.

@@ -1,5 +1,7 @@
 import Component from '@component/Component.js';
 import { appendChildAll, templateToElementNodes } from '@utils/document.js';
+import { notify } from '@constant/State.js';
+import { RouterEvent } from '@src/constant/Event.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/Navigator.scss';
@@ -23,12 +25,24 @@ export default class Navigator extends Component {
     this.setSubscribers(subscribers);
   }
 
+  componentDidMount() {
+    this.addTabClickEventListener();
+  }
+
+  addTabClickEventListener() {
+    this.element.addEventListener('click', this.onClickTab.bind(this));
+  }
+
+  onClickTab(e) {
+    notify(RouterEvent.onStateChanged, { path: `/${e.target.dataset.name}` });
+  }
+
   render() {
     const template = `
     <ul class="tab">
-      <li class="tabbed">내역</li>
-      <li>달력</li>
-      <li>통계</li>
+      <li class="tabbed" data-name="">내역</li>
+      <li data-name="calendar">달력</li>
+      <li data-name="statistics">통계</li>
     </ul>
     `;
 

@@ -7,9 +7,9 @@ const getRecordInMonth = async function (req, res, next) {
 
   res.send({
     success: true,
-    items,
     year,
     month,
+    items,
   });
 };
 
