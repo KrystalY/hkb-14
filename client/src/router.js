@@ -1,6 +1,5 @@
-import { subscribe, notify } from '@src/constant/State';
-import { RouterEvent } from '@src/constant/Event.js';
-import { Store } from '@constant/Store.js';
+import { subscribe, notify, clearSubscribers } from '@src/constant/State';
+import { RouterEvent, PageEvent } from '@src/constant/Event.js';
 
 export default class Router {
   constructor() {
@@ -34,17 +33,18 @@ export default class Router {
   onChangeUrl(data) {
     let path = data.path;
     let [, menu, year, month] = data.path.split('/');
-    year = !year ? new Date().getFullYear() : year;
-    month = !month ? new Date().getMonth() + 1 : month;
+    year = year || new Date().getFullYear();
+    month = month || new Date().getMonth() + 1;
 
     if (data.useCurrentData) {
       const [, , currentYear, currentMonth] = location.pathname.split('/');
-      year = currentYear ? currentYear : year;
-      month = currentMonth ? currentMonth : month;
+      year = currentYear || year;
+      month = currentMonth || month;
       const menuUrl = menu ? `/${menu}/` : '';
       path = `${menuUrl}${year}/${month}`;
     }
 
+    clearSubscribers(PageEvent.onAppendDone);
     notify(RouterEvent.onStateChanged, { path, menu, year, month });
   }
 

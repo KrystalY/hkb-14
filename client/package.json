@@ -5,6 +5,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "build-dev": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
     "dev": "webpack-dev-server --open --mode development",
     "test": "jest"
   },

@@ -1,7 +1,7 @@
 import Component from '@component/Component.js';
 import { StoreEvent } from '@constant/Event.js';
 import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
-import { analyzeDatetime, groupBy, numberFormat } from '@utils/helper.js';
+import { analyzeDatetime, groupBy, formatCurrency } from '@utils/helper.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/RecordGroupList.scss';
@@ -44,15 +44,15 @@ export default class RecordGroupList extends Component {
   createGroupSumIndicator(incomeSum, expenditureSum) {
     return `
     <div class="sum">
-      <span class="plus">+${numberFormat(incomeSum)}원</span>
-      <span class="minus">-${numberFormat(expenditureSum)}원</span>
+      <span class="plus">+${formatCurrency(incomeSum)}원</span>
+      <span class="minus">-${formatCurrency(expenditureSum)}원</span>
     </div>
     `;
   }
 
   createGroupItem(item) {
     const preAmount = item.isIncome ? '+' : '-';
-    const amount = preAmount + numberFormat(item.amount);
+    const amount = preAmount + formatCurrency(item.amount);
     return `
     <li${item.isIncome ? ' class="income"' : ''}>
       <div class="category">

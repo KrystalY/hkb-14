@@ -1,10 +1,14 @@
 import { Store } from './Store.js';
 
+const initEventState = (key) => {
+  Store.state[key] = {
+    listeners: {},
+  };
+};
+
 export const subscribe = (component, key, eventHandler) => {
   if (Store.state[key] === undefined) {
-    Store.state[key] = {
-      listeners: {},
-    };
+    initEventState(key);
   }
 
   Store.state[key].listeners[
@@ -20,18 +24,30 @@ export const notify = (key, data, targetUid = null) => {
     return;
   }
 
-  if (targetUid) {
-    Object.values(Store.state[key].listeners).some(({ eventHandler, uid }) => {
-      if (uid === targetUid) {
-        eventHandler(data);
-        return true;
-      }
+  try {
+    if (targetUid) {
+      Object.values(Store.state[key].listeners).some(
+        ({ eventHandler, uid }) => {
+          if (uid === targetUid) {
+            eventHandler(data);
+            return true;
+          }
+        },
+      );
+
+      return;
+    }
+
+    Object.values(Store.state[key].listeners).forEach(({ eventHandler }) => {
+      eventHandler(data);
     });
-
-    return;
+  } catch (err) {
+    console.error(err);
   }
+};
 
-  Object.values(Store.state[key].listeners).forEach(({ eventHandler }) => {
-    eventHandler(data);
-  });
+export const clearSubscribers = (key) => {
+  if (Store.state[key]) {
+    initEventState(key);
+  }
 };

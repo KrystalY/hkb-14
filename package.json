@@ -1,0 +1,11 @@
+{
+  "name": "money-manager",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"yarn --cwd ./client watch\" \"yarn --cwd ./server start\""
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
+}
