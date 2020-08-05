@@ -8,15 +8,6 @@ const defaultOptions = (method) => ({
   },
 });
 
-const createQuery = (data) => {
-  return data
-    ? '?' +
-        Object.keys(data)
-          .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
-          .join('&')
-    : '';
-};
-
 const POST = async (url = '', data) =>
   await fetch(`${serverUrl}${url}`, {
     body: JSON.stringify(data),
@@ -29,8 +20,8 @@ const PUT = async (url = '', data) =>
     ...defaultOptions('PUT'),
   });
 
-const GET = async (url = '', data) =>
-  await fetch(`${serverUrl}${url}${createQuery(data)}`, defaultOptions('GET'));
+const GET = async (url = '') =>
+  await fetch(`${serverUrl}${url}`, defaultOptions('GET'));
 
 const DELETE = async (url = '') =>
   await fetch(`${serverUrl}${url}`, defaultOptions('DELETE'));
