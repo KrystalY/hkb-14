@@ -45,6 +45,7 @@ export default class Model {
   }
 
   async getRecord(data) {
+    Store.currentPath = data;
     const { year, month } = data;
     await this.fetchDefaultData();
     await this.fetchRecord(year, month);

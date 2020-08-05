@@ -8,9 +8,15 @@
   margin-bottom: 24px;
   user-select: none;
 
-  .month {
+  .current_date {
+    width: 160px;
     font-size: 1.8em;
-    margin: 0 12px;
+    text-align: center;
+  }
+
+  .action {
+    padding: 3px;
+    cursor: pointer;
   }
 
   .arrow {

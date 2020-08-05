@@ -1,6 +1,7 @@
 import Component from '@component/Component.js';
-import { DateViewEvent } from '@constant/Event.js';
+import { StoreEvent, RouterEvent } from '@constant/Event.js';
 import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
+import { notify } from '@constant/State.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/DateView.scss';
@@ -14,27 +15,61 @@ export default class DateView extends Component {
 
     super({ attribute });
 
+    this.state = {
+      menu: null,
+      year: null,
+      month: null,
+    };
     this.initSubscribers();
     this.init();
   }
 
+  componentDidMount() {
+    const $dateview = $(`.${this.attribute.className}`);
+    $dateview.addEventListener('click', this.onClickButton.bind(this));
+  }
+
+  onClickButton(e) {
+    e.preventDefault();
+    const $button = e.target.closest('.action');
+    if (!$button || $button.tagName !== 'A') {
+      return;
+    }
+
+    const action = $button.dataset.action;
+    const date = new Date(`${this.state.year}/${this.state.month}/1`);
+    if (action === 'prev') {
+      date.setMonth(date.getMonth() - 1);
+    } else if (action === 'next') {
+      date.setMonth(date.getMonth() + 1);
+    }
+
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    notify(RouterEvent.changeUrl, {
+      path: `/${this.state.menu}/${year}/${month}`,
+    });
+  }
+
   onDateChanged(data) {
-    const $month = $(`.${this.attribute.className} .month`);
-    $month.innerHTML = `${data.month}월`;
+    this.state = data.currentPath;
+
+    const $current_date = $(`.${this.attribute.className} .current_date`);
+    $current_date.innerHTML = `${data.year}년 ${data.month}월`;
   }
 
   initSubscribers() {
     const subscribers = {
-      [DateViewEvent.onDateChanged]: this.onDateChanged,
+      [StoreEvent.onUpdated]: this.onDateChanged,
     };
     this.setSubscribers(subscribers);
   }
 
   render() {
     const template = `
-    <a class="prev" href="#"><span class="arrow"></span></a>
-    <div class="month">7월</div>
-    <a class="next" href="#"><span class="arrow-right"></span></a>
+    <a class="action" data-action="prev" href="#prev"><span class="arrow"></span></a>
+    <div class="current_date"></div>
+    <a class="action" data-action="next" href="#next"><span class="arrow-right"></span></a>
     `;
 
     const innerNode = templateToElementNodes(template);
