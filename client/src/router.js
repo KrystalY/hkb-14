@@ -34,13 +34,13 @@ export default class Router {
   onChangeUrl(data) {
     let path = data.path;
     let [, menu, year, month] = data.path.split('/');
-    year = !year ? new Date().getFullYear() : year;
-    month = !month ? new Date().getMonth() + 1 : month;
+    year = year || new Date().getFullYear();
+    month = month || new Date().getMonth() + 1;
 
     if (data.useCurrentData) {
       const [, , currentYear, currentMonth] = location.pathname.split('/');
-      year = currentYear ? currentYear : year;
-      month = currentMonth ? currentMonth : month;
+      year = currentYear || year;
+      month = currentMonth || month;
       const menuUrl = menu ? `/${menu}/` : '';
       path = `${menuUrl}${year}/${month}`;
     }
