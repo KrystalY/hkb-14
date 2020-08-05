@@ -63,3 +63,17 @@ export const getLastDateOfMonth = (year, month) => {
 export const getFirstDayOfWeekInMonth = (year, month) => {
   return new Date(year, month - 1, 1).getDay();
 };
+
+export const chunkArray = (array, size) => {
+  const chunked_arr = [];
+  let index = 0;
+  while (index < array.length) {
+    chunked_arr.push(array.slice(index, size + index));
+    index += size;
+  }
+  return chunked_arr;
+};
+
+export const formatCurrency = (number) => {
+  return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+};
