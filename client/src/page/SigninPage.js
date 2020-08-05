@@ -2,7 +2,7 @@ import { subscribe } from '@constant/State.js';
 import { RouterEvent } from '@constant/Event.js';
 import { div } from '@utils/defaultElement.js';
 
-export default class Signin {
+export default class SigninPage {
   constructor(container) {
     this.attribute = {
       className: 'signin_page',

@@ -9,6 +9,7 @@ const Event = {
     onDateChanged: 'DateView:onDateChanged',
   },
   RouterEvent: {
+    changeUrl: 'Router:changeUrl',
     onStateChanged: 'Router:onStateChanged',
   },
 };
