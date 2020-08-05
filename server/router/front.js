@@ -6,9 +6,9 @@ const renderFile = (req, res, next) => {
 };
 
 router.get('/', renderFile);
-router.get('/login', renderFile);
-router.get('/list', renderFile);
-router.get('/calendar', renderFile);
-router.get('/statistics', renderFile);
+router.get('/login(/*)?', renderFile);
+router.get('/record(/*)?', renderFile);
+router.get('/calendar(/*)?', renderFile);
+router.get('/statistics(/*)?', renderFile);
 
 module.exports = router;
