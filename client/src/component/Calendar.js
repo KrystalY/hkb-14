@@ -4,12 +4,15 @@ import {
   getLastDateOfMonth,
   getFirstDayOfWeekInMonth,
   groupBy,
+  chunkArray,
+  formatCurrency,
 } from '@utils/helper.js';
 // eslint-disable-next-line
 import style from '@stylesheet/component/Calendar.scss';
 import { StoreEvent } from '@constant/Event.js';
 
-const DAY_IN_MONTH = 42;
+const DAY_IN_A_BOARD = 42;
+const WEEK_IN_A_BOARD = 7;
 
 export default class Calendar extends Component {
   constructor() {
@@ -36,12 +39,8 @@ export default class Calendar extends Component {
     this.setSubscribers(subscribers);
   }
 
-  makeMonthData(formatedData, lastMonthLastDate, firstDayOfWeek) {
-    [...Array];
-  }
-
-  createMonthData(data) {
-    const formatedData = this.formatData(data.records);
+  createBoardData(data) {
+    const formatedData = this.formatHistoryData(data.records);
     const lastMonthLastDate = getLastDateOfMonth(data.year, data.month - 1);
     const currentMonthLastDate = getLastDateOfMonth(data.year, data.month);
     const firstDayOfWeek = getFirstDayOfWeekInMonth(data.year, data.month);
@@ -52,16 +51,79 @@ export default class Calendar extends Component {
       return { day: i + 1, ...(formatedData[i] || {}) };
     });
     const nextMonth = [
-      ...Array(DAY_IN_MONTH - lastMonth.length - thisMonth.length).keys(),
+      ...Array(DAY_IN_A_BOARD - lastMonth.length - thisMonth.length).keys(),
     ].map((i) => {
       return { day: i + 1, dummy: true };
     });
-    return [...lastMonth, ...thisMonth, ...nextMonth];
+    const today = new Date();
+    if (
+      today.getFullYear() == data.year &&
+      today.getMonth() + 1 == data.month
+    ) {
+      thisMonth[today.getDate() - 1].today = true;
+    }
+    return chunkArray(
+      [...lastMonth, ...thisMonth, ...nextMonth],
+      WEEK_IN_A_BOARD,
+    );
+  }
+  createBoardHeader() {
+    return `
+      <tr class="table_header_row">
+        <th class="table_header sunday">일</th>
+        <th class="table_header">월</th>
+        <th class="table_header">화</th>
+        <th class="table_header">수</th>
+        <th class="table_header">목</th>
+        <th class="table_header">금</th>
+        <th class="table_header">토</th>
+      </tr>`;
   }
 
-  createCalendarContent() {}
+  createBoardSpace(spaceData, i) {
+    return `
+      <td class="table_data ${i === 0 ? 'sunday' : ''} ${
+      spaceData.dummy ? 'dummy' : ''
+    }
+      ${spaceData.today ? 'today' : ''}
+      ">
+        ${spaceData.day}
+        <div class="summary_date">
+          <span class="income">${
+            spaceData.income ? formatCurrency(spaceData.income) : ''
+          }</span>
+          <span class="outcome">${
+            spaceData.expense ? formatCurrency(spaceData.expense) : ''
+          }</span>
+        </div>
+      </td>`;
+  }
 
-  formatData(records) {
+  createBoardRow(rowData) {
+    return rowData.reduce((acc, spaceData, i) => {
+      return acc + this.createBoardSpace(spaceData, i);
+    }, '');
+  }
+
+  createBoardContent(boardData) {
+    return boardData.reduce((acc, rowData) => {
+      return (
+        acc +
+        `<tr class="table_data_row">
+          ${this.createBoardRow(rowData)}
+        </tr>`
+      );
+    }, '');
+  }
+  createBoard(boardData) {
+    return `
+    <table class="calendar">
+      ${this.createBoardHeader()}
+      ${this.createBoardContent(boardData)}
+    </table>`;
+  }
+
+  formatHistoryData(records) {
     const recordsByDate = groupBy(records, 'record_at');
     const formatedDate = {};
     const keys = Object.keys(recordsByDate).sort();
@@ -80,54 +142,9 @@ export default class Calendar extends Component {
   }
 
   render(data) {
-    console.log(data);
-    this.createMonthData(data);
-    /*html */
+    const boardData = this.createBoardData(data);
     const template = `
-      <table class="calendar">
-        <tr class="table_header_row">
-          <th class="table_header sunday">일</th>
-          <th class="table_header">월</th>
-          <th class="table_header">화</th>
-          <th class="table_header">수</th>
-          <th class="table_header">목</th>
-          <th class="table_header">금</th>
-          <th class="table_header">토</th>
-        </tr>
-        <tr class="table_data_row">
-          <td class="table_data sunday">1</td>
-          <td class="table_data">
-            2
-            <div class="summary_date">
-              <span class="income">+275,5000</span>
-              <span class="outcome">-3000</span>
-            </div>
-          </td>
-          <td class="table_data">3</td>
-          <td class="table_data">4</td>
-          <td class="table_data">5</td>
-          <td class="table_data">6</td>
-          <td class="table_data">7</td>
-        </tr>
-        <tr class="table_data_row">
-          <td class="table_data sunday">1</td>
-          <td class="table_data">2</td>
-          <td class="table_data">3</td>
-          <td class="table_data">4</td>
-          <td class="table_data">5</td>
-          <td class="table_data">6</td>
-          <td class="table_data">7</td>
-        </tr>
-        <tr class="table_data_row">
-          <td class="table_data sunday">1</td>
-          <td class="table_data">2</td>
-          <td class="table_data">3</td>
-          <td class="table_data">4</td>
-          <td class="table_data">5</td>
-          <td class="table_data">6</td>
-          <td class="table_data">7</td>
-        </tr>
-      </table>
+      ${this.createBoard(boardData)}
     `;
 
     const innerNode = templateToElementNodes(template);
