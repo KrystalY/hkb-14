@@ -13,8 +13,13 @@ async function getRecentUpdatedDate(year, month) {
   return record[0].EDITED_AT;
 }
 
+async function createRecord(data) {
+  const record = await recordModel.createRecord(data);
+  return record[0];
+}
+
 function changeFormatOfRecord(records) {
   return records;
 }
 
-export { findByYearAndMonth, getRecentUpdatedDate };
+export { findByYearAndMonth, getRecentUpdatedDate, createRecord };

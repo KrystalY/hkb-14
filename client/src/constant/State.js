@@ -24,26 +24,28 @@ export const notify = (key, data, targetUid = null) => {
     return;
   }
 
-  try {
-    if (targetUid) {
-      Object.values(Store.state[key].listeners).some(
-        ({ eventHandler, uid }) => {
-          if (uid === targetUid) {
-            eventHandler(data);
-            return true;
-          }
-        },
-      );
-
-      return;
-    }
-
-    Object.values(Store.state[key].listeners).forEach(({ eventHandler }) => {
-      eventHandler(data);
+  if (targetUid) {
+    Object.values(Store.state[key].listeners).some(({ eventHandler, uid }) => {
+      if (uid === targetUid) {
+        try {
+          eventHandler(data);
+          return true;
+        } catch (err) {
+          console.error(err);
+        }
+      }
     });
-  } catch (err) {
-    console.error(err);
+
+    return;
   }
+
+  Object.values(Store.state[key].listeners).forEach(({ eventHandler }) => {
+    try {
+      eventHandler(data);
+    } catch (err) {
+      console.error(err);
+    }
+  });
 };
 
 export const clearSubscribers = (key) => {

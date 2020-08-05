@@ -12,10 +12,14 @@ const Event = {
     changeUrl: 'Router:changeUrl',
     onStateChanged: 'Router:onStateChanged',
   },
+  RecordEvent: {
+    create: 'Record:create',
+  },
 };
 
 export const PageEvent = Event.PageEvent;
 export const StoreEvent = Event.StoreEvent;
 export const DateViewEvent = Event.DateViewEvent;
 export const RouterEvent = Event.RouterEvent;
+export const RecordEvent = Event.RecordEvent;
 export default Event;

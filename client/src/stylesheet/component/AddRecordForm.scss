@@ -42,6 +42,11 @@
     border-bottom: 1px solid $color-black-9;
   }
 
+  select {
+    width: 120px;
+    font-size: 1em;
+  }
+
   .btn_submit {
     width: 100%;
     padding: 10px;

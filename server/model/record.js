@@ -1,11 +1,35 @@
 import Pool from './pool';
+import { getCurrentDateTime } from '@util/index';
 
+const INSERT_RECORD = `
+  INSERT INTO MONEY_RECORD
+  (user_key, category_key, payment_method_key, record_at, amount, content, created_at, edited_at)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+`;
 const FIND_BY_YEAR_AND_MONTH =
   'SELECT * FROM MONEY_RECORD WHERE RECORD_AT BETWEEN ? AND ? ORDER BY RECORD_AT, `KEY`';
 const GET_RECENT_UPDATED_RECORD_BY_YEAR_AND_MONTH =
   'SELECT EDITED_AT FROM MONEY_RECORD WHERE RECORD_AT BETWEEN ? AND ? ORDER BY EDITED_AT DESC LIMIT 1';
+
 export default class Record {
   constructor() {}
+
+  async createRecord(data) {
+    const connection = await Pool.getConnection();
+    const currentDatetime = getCurrentDateTime();
+    const [rows] = await connection.execute(INSERT_RECORD, [
+      data.userKey,
+      data.categoryKey,
+      data.paymentMethodKey,
+      data.recordAt,
+      data.amount,
+      data.content,
+      currentDatetime,
+      currentDatetime,
+    ]);
+    connection.release();
+    return rows;
+  }
 
   async findByYearAndMonth(year, month) {
     const connection = await Pool.getConnection();

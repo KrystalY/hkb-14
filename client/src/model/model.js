@@ -1,6 +1,6 @@
 import apis from '@src/model/apis.js';
 import { Store } from '@constant/Store.js';
-import { StoreEvent, RouterEvent } from '@constant/Event.js';
+import { StoreEvent, RouterEvent, RecordEvent } from '@constant/Event.js';
 import { subscribe, notify } from '@constant/State.js';
 import { CATEGORY, MESSAGE } from '@constant/constant.js';
 
@@ -24,11 +24,9 @@ const customCategory = {
 
 export default class Model {
   constructor() {
-    subscribe(
-      { uid: Model },
-      RouterEvent.onStateChanged,
-      this.getRecord.bind(this),
-    );
+    const attribute = { uid: Model };
+    subscribe(attribute, RouterEvent.onStateChanged, this.getRecord.bind(this));
+    subscribe(attribute, RecordEvent.create, this.createRecord.bind(this));
   }
 
   convertData(item) {
@@ -38,20 +36,29 @@ export default class Model {
     return { ...item, category, paymentMethod, isIncome };
   }
 
+  async createRecord({ data }) {
+    data.user = Store.user.key;
+    await (await apis.createRecord(data)).json();
+
+    const [year, month] = data.record_at.split('-');
+    notify(RouterEvent.changeUrl, { path: `/record/${year}/${month}` });
+  }
+
   async getRecord(data) {
+    Store.currentPath = data;
     const { year, month } = data;
-    await this.setDefaultData();
-    await this.setRecord(year, month);
+    await this.fetchDefaultData();
+    await this.fetchRecord(year, month);
     notify(StoreEvent.onUpdated, { ...Store });
   }
 
-  async setRecord(year, month) {
+  async fetchRecord(year, month) {
     let expenditureSum = 0,
       incomeSum = 0;
 
     const data = await (await apis.findRecord({ year, month })).json();
     if (!data.success) {
-      alert(MESSAGE.USER_INPUT_ERROR);
+      alert(MESSAGE.API_USER_INPUT_ERROR);
       location.href = '/';
     }
 
@@ -68,11 +75,14 @@ export default class Model {
     Store.expenditureSum = expenditureSum;
   }
 
-  async setDefaultData() {
+  async fetchDefaultData() {
     if (Store.paymentMethods) {
       return;
     }
 
+    Store.user = {
+      key: 1,
+    };
     Store.categories = customCategory;
     Store.paymentMethods = customPaymentMethod;
   }

@@ -3,7 +3,8 @@ export const SERVER = {
 };
 
 export const MESSAGE = {
-  USER_INPUT_ERROR: '요청 값이 이상합니다.',
+  API_USER_INPUT_ERROR: '요청 값이 이상합니다.',
+  FORM_INPUT_EMPTY_ERROR: '모든 값을 입력해주세요.',
 };
 
 export const CATEGORY = {
