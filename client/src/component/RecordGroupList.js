@@ -67,7 +67,7 @@ export default class RecordGroupList extends Component {
       <div class="amount">
         ${amount}원
       </div>
-    </li$>
+    </li>
     `;
   }
 
@@ -105,6 +105,7 @@ export default class RecordGroupList extends Component {
       .map((date) => this.createGroup(date, recordsByDate[date]))}
     `;
 
+    this.element.innerHTML = '';
     const innerNode = templateToElementNodes(template);
     appendChildAll(this.element, innerNode);
   }
