@@ -1,8 +1,3 @@
-export const numberFormat = (number) => {
-  const intl = Intl.NumberFormat('en-US');
-  return intl.format(number);
-};
-
 export const getCurrentDatetime = () => {
   const date = analyzeDatetime();
   return `${date.year}-${date.month}-${date.date} ${date.hour}:${date.minute}:${date.second}`;
