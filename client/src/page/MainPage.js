@@ -3,6 +3,7 @@ import DateView from '@component/DateView.js';
 import AddRecordForm from '@component/AddRecordForm.js';
 import RecordGroupList from '@component/RecordGroupList.js';
 import Calendar from '@component/Calendar.js';
+import Chart from '@src/component/Chart.js';
 import { PageEvent, DateViewEvent, RouterEvent } from '@constant/Event.js';
 import { notify, subscribe } from '@constant/State.js';
 import { div } from '@utils/defaultElement.js';
