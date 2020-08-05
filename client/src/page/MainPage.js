@@ -49,6 +49,8 @@ export default class MainPage {
         );
       case '/calendar':
         return div({ className: 'section' }, new Calendar());
+      case '/statistics':
+        return div({ className: 'section' }, new Chart());
       default:
         return div(
           { className: 'section' },

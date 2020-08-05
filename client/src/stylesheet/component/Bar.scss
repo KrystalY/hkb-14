@@ -3,6 +3,7 @@
 .bargraph {
   width: 100%;
   border-top: 2px solid $color-gray-a;
+
   .wrap_li {
     display: flex;
     flex-direction: row;
@@ -10,21 +11,26 @@
     box-sizing: border-box;
     padding: 10px 10px;
     border-bottom: 1px solid $color-gray-c;
+
     .name_category {
       width: 100px;
     }
+
     .ratio_category {
       width: 50px;
       color: $color-main;
       margin-right: 5px;
     }
+
     .wrap_bar {
       flex: 1;
       margin-right: 5px;
       position: relative;
       overflow: hidden;
+
       @for $i from 1 through length($chart-rank) {
         $c: nth($chart-rank, $i);
+
         .rank-#{$i} {
           background-color: $c;
         }
@@ -36,19 +42,16 @@
         animation-duration: 2s;
         animation-name: slide;
       }
+
       @keyframes slide {
         from {
           transform: translateX(-100%);
         }
+
         to {
           transform: translateX(0%);
         }
       }
     }
   }
-}
-
-.vertical_middle {
-  display: flex;
-  align-items: center;
 }

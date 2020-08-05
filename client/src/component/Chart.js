@@ -1,9 +1,10 @@
+// eslint-disable-next-line
 import Component from '@component/Component.js';
 import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
-// eslint-disable-next-line
-import style from '@stylesheet/component/Bar.scss';
 import { StoreEvent } from '@constant/Event.js';
 import { groupBy, formatCurrency, round } from '@utils/helper.js';
+
+import style from '@stylesheet/component/Bar.scss';
 
 export default class Chart extends Component {
   constructor() {

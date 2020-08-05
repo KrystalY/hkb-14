@@ -19,3 +19,8 @@ a:visited {
   color: $color-black-3;
   text-decoration: none;
 }
+
+.vertical_middle {
+  display: flex;
+  align-items: center;
+}
