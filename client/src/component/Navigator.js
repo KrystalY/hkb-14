@@ -33,13 +33,16 @@ export default class Navigator extends Component {
   }
 
   onClickTab(e) {
-    notify(RouterEvent.onStateChanged, { path: `/${e.target.dataset.name}` });
+    notify(RouterEvent.changeUrl, {
+      path: `/${e.target.dataset.name}`,
+      useCurrentData: true,
+    });
   }
 
   render() {
     const template = `
     <ul class="tab">
-      <li class="tabbed" data-name="">내역</li>
+      <li class="tabbed" data-name="record">내역</li>
       <li data-name="calendar">달력</li>
       <li data-name="statistics">통계</li>
     </ul>

@@ -1,0 +1,65 @@
+@import '@stylesheet/_config.scss';
+
+.calendar {
+  border-width: 1px;
+  border-style: solid;
+  border-color: $color-gray-c;
+  width: 100%;
+  table-layout: fixed;
+  .table_header_row {
+    height: 30px;
+    text-align: left;
+    text-indent: 10px;
+    .table_header {
+      vertical-align: middle;
+    }
+  }
+  .table_header_row,
+  .table_data_row {
+    border-bottom: 1px solid $color-gray-e;
+    .table_data {
+      height: 100px;
+      text-indent: 10px;
+      padding-top: 5px;
+      position: relative;
+      .summary_date {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        .income,
+        .outcome {
+          display: block;
+          text-align: right;
+        }
+        .income {
+          color: $color-main;
+          height: 20px;
+        }
+        .outcome {
+          color: $color-red-d;
+          height: 20px;
+        }
+      }
+    }
+    .table_header,
+    .table_data {
+      border-right: 1px solid $color-gray-e;
+    }
+    .sunday {
+      color: $color-red-d;
+    }
+    .dummy {
+      color: $color-gray-e;
+    }
+    :last-child {
+      border-right: 0;
+    }
+    .today {
+      font-weight: bold;
+      color: $color-main;
+    }
+  }
+  :last-child {
+    border-bottom: 0;
+  }
+}

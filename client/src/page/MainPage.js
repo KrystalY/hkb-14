@@ -2,6 +2,7 @@ import Navigator from '@component/Navigator.js';
 import DateView from '@component/DateView.js';
 import AddRecordForm from '@component/AddRecordForm.js';
 import RecordGroupList from '@component/RecordGroupList.js';
+import Calendar from '@component/Calendar.js';
 import { PageEvent, DateViewEvent, RouterEvent } from '@constant/Event.js';
 import { notify, subscribe } from '@constant/State.js';
 import { div } from '@utils/defaultElement.js';
@@ -45,8 +46,14 @@ export default class MainPage {
           new AddRecordForm(),
           new RecordGroupList(),
         );
+      case '/calendar':
+        return div({ className: 'section' }, new Calendar());
       default:
-        return div({ className: 'section' }, new AddRecordForm());
+        return div(
+          { className: 'section' },
+          new AddRecordForm(),
+          new RecordGroupList(),
+        );
     }
   }
 

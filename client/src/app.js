@@ -17,8 +17,6 @@ export default class App {
     new Layout(this.$container);
     new Router();
 
-    notify(RouterEvent.onStateChanged, {
-      path: location.pathname,
-    });
+    notify(RouterEvent.changeUrl, { path: location.pathname });
   }
 }

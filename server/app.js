@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const cors = require('cors');
 const indexRouter = require('@api/index');
 const frontRouter = require('./router/front');
 
@@ -12,7 +12,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
-
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(

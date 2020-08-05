@@ -2,7 +2,7 @@ import apis from '@src/model/apis.js';
 import { Store } from '@constant/Store.js';
 import { StoreEvent, RouterEvent } from '@constant/Event.js';
 import { subscribe, notify } from '@constant/State.js';
-import { CATEGORY } from '@constant/constant.js';
+import { CATEGORY, MESSAGE } from '@constant/constant.js';
 
 const customPaymentMethod = {
   4: {
@@ -39,10 +39,7 @@ export default class Model {
   }
 
   async getRecord(data) {
-    let [, , year, month] = data.path.split('/');
-    year = !year ? new Date().getFullYear() : year;
-    month = !month ? new Date().getMonth() + 1 : month;
-
+    const { year, month } = data;
     await this.setDefaultData();
     await this.setRecord(year, month);
     notify(StoreEvent.onUpdated, { ...Store });
@@ -53,6 +50,11 @@ export default class Model {
       incomeSum = 0;
 
     const data = await (await apis.findRecord({ year, month })).json();
+    if (!data.success) {
+      alert(MESSAGE.USER_INPUT_ERROR);
+      location.href = '/';
+    }
+
     Store.year = data.year;
     Store.month = data.month;
     Store.records = data.items.map((record) => {
