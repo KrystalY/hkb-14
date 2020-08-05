@@ -1,6 +1,5 @@
-import { subscribe, notify } from '@src/constant/State';
-import { RouterEvent } from '@src/constant/Event.js';
-import { Store } from '@constant/Store.js';
+import { subscribe, notify, clearSubscribers } from '@src/constant/State';
+import { RouterEvent, PageEvent } from '@src/constant/Event.js';
 
 export default class Router {
   constructor() {
@@ -45,6 +44,7 @@ export default class Router {
       path = `${menuUrl}${year}/${month}`;
     }
 
+    clearSubscribers(PageEvent.onAppendDone);
     notify(RouterEvent.onStateChanged, { path, menu, year, month });
   }
 

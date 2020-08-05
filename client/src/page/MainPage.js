@@ -27,10 +27,10 @@ export default class MainPage {
     );
   }
 
-  onStateChanged({ path }) {
+  onStateChanged(data) {
     this.clear();
-    if (path !== '/login') {
-      this.render(path);
+    if (data.menu !== 'login') {
+      this.render(data);
     }
   }
 
@@ -38,36 +38,29 @@ export default class MainPage {
     this.$container.innerHTML = '';
   }
 
-  setComponentByPath(path) {
-    switch (path) {
-      case '/':
+  setComponentByPath(data) {
+    switch (data.menu) {
+      case '':
+      case 'record':
         return div(
           { className: 'section' },
           new AddRecordForm(),
           new RecordGroupList(),
         );
-      case '/calendar':
+      case 'calendar':
         return div({ className: 'section' }, new Calendar());
       default:
-        return div(
-          { className: 'section' },
-          new AddRecordForm(),
-          new RecordGroupList(),
-        );
+        return div({ className: 'section' });
     }
   }
 
-  render(path) {
-    setTimeout(() => {
-      notify(DateViewEvent.onDateChanged, { month: 12 });
-    }, 1000);
-
+  render(data) {
     this.$container.appendChild(
       div(
         { className: 'main_page' },
         new DateView(),
         new Navigator(),
-        this.setComponentByPath(path),
+        this.setComponentByPath(data),
       ),
     );
     notify(PageEvent.onAppendDone, {});

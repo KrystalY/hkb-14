@@ -7,9 +7,10 @@ import {
   chunkArray,
   formatCurrency,
 } from '@utils/helper.js';
+import { StoreEvent } from '@constant/Event.js';
+
 // eslint-disable-next-line
 import style from '@stylesheet/component/Calendar.scss';
-import { StoreEvent } from '@constant/Event.js';
 
 const DAY_IN_A_BOARD = 42;
 const WEEK_IN_A_BOARD = 7;
@@ -67,6 +68,7 @@ export default class Calendar extends Component {
       WEEK_IN_A_BOARD,
     );
   }
+
   createBoardHeader() {
     return `
       <tr class="table_header_row">
