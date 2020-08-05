@@ -77,3 +77,7 @@ export const chunkArray = (array, size) => {
 export const formatCurrency = (number) => {
   return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
 };
+
+export const round = (float, digit) => {
+  return Math.round(float * 10 ** digit) / 10 ** digit;
+};
