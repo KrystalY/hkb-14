@@ -92,3 +92,7 @@ export const createElement = (tagName, attributes, ...childNodes) => {
 
   return element;
 };
+
+export const formToDataObject = ($form) => {
+  return Object.fromEntries(new FormData($form).entries());
+};
