@@ -1,0 +1,165 @@
+@import '@stylesheet/_config.scss';
+
+.wrap_pie {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 30px;
+  .pie {
+    border-radius: 100%;
+    height: 300px;
+    position: relative;
+    width: 300px;
+    overflow: hidden;
+    @for $i from 1 through length($chart-rank) {
+      $c: nth($chart-rank, $i);
+
+      .rank-#{$i}::after,
+      .rank-#{$i}::before {
+        background-color: $c;
+      }
+    }
+    .pie__segment::after,
+    .pie__segment::before {
+      content: '';
+      height: 100%;
+      width: 100%;
+      position: absolute;
+    }
+    .pie__segment::after {
+      opacity: var(--over50, 0);
+    }
+    .pie__segment {
+      --degrees: calc((var(--offset, 0) / 100) * 360);
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      transform: translate(0, -50%) rotate(90deg)
+        rotate(calc(var(--degrees, 0) * 1deg));
+      transform-origin: 50% 100%;
+      --a: calc(var(--over50, 0) * -100%);
+      --b: calc((1 + var(--over50, 0)) * 100%);
+      clip-path: polygon(
+        var(--a) var(--a),
+        var(--b) var(--a),
+        var(--b) var(--b),
+        var(--a) var(--b)
+      );
+      -webkit-clip-path: polygon(
+        var(--a) var(--a),
+        var(--b) var(--a),
+        var(--b) var(--b),
+        var(--a) var(--b)
+      );
+    }
+    .pie__segment::before {
+      --degrees: calc((var(--value, 45) / 100) * 360);
+      transform: translate(0, 100%) rotate(calc(var(--degrees, 45) * 1deg));
+      transform-origin: 50% 0;
+    }
+    .dummy_pie::after {
+      overflow: hidden;
+    }
+    .after,
+    .before {
+      content: '';
+      height: 100%;
+      width: 100%;
+      position: absolute;
+    }
+    .after,
+    .before {
+      overflow: hidden;
+    }
+    .before {
+      --degrees: calc((var(--value, 45) / 100) * 360);
+      transform: translate(0, 100%) rotate(calc(var(--degrees, 45) * 1deg));
+      transform-origin: 50% 0;
+    }
+    .before::before {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      animation-duration: 4s;
+      background-color: while;
+      animation-name: rotateLeft;
+      animation-fill-mode: forwards;
+    }
+    .after::after {
+      content: '';
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      animation-duration: 1s;
+      animation-name: rotateRight;
+      animation-fill-mode: forwards;
+      background-color: white;
+      animation-timing-function: linear;
+    }
+    .before::before {
+      content: '';
+      animation-duration: 2s;
+      background-color: white;
+      animation-timing-function: linear;
+    }
+    .dummy_pie {
+      --degrees: calc((var(--offset, 0) / 100) * 360);
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      transform: translate(0, -50%) rotate(90deg)
+        rotate(calc(var(--degrees, 0) * 1deg));
+      transform-origin: 50% 100%;
+      z-index: 10;
+    }
+    .arc-title {
+      position: absolute;
+      bottom: 0;
+      z-index: 30;
+      color: #000000;
+      font-weight: bold;
+      font-size: 10px;
+      animation-duration: 4s;
+      animation-name: showTitle;
+      animation-fill-mode: forwards;
+      animation-timing-function: linear;
+    }
+    @keyframes showTitle {
+      from {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes rotateLeft {
+      from {
+        transform: rotate(0deg);
+        transform-origin: 50% 0;
+      }
+
+      50% {
+        transform: rotate(0deg);
+        transform-origin: 50% 0;
+      }
+
+      to {
+        transform: rotate(180deg);
+        transform-origin: 50% 0;
+      }
+    }
+    @keyframes rotateRight {
+      from {
+        transform-origin: 50% 100%;
+      }
+      to {
+        transform: rotate(180deg);
+        transform-origin: 50% 100%;
+      }
+    }
+  }
+}
