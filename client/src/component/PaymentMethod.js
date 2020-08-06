@@ -1,7 +1,7 @@
 import Component from '@component/Component.js';
 import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
-import { StoreEvent } from '@constant/Event.js';
-
+import { StoreEvent, ModalEvent } from '@constant/Event.js';
+import { notify } from '@constant/State.js';
 // eslint-disable-next-line
 import style from '@stylesheet/component/PaymentMethod.scss';
 
@@ -25,8 +25,29 @@ export default class PaymentMethod extends Component {
   initSubscribers() {
     const subscribers = {
       [StoreEvent.onUpdated]: this.render,
+      [ModalEvent.open]: this.openModal.bind(this),
+      [ModalEvent.close]: this.closeModal.bind(this),
     };
     this.setSubscribers(subscribers);
+  }
+
+  addClickeventListener() {
+    this.element.addEventListener('click', this.onClick.bind(this));
+  }
+
+  onClick(e) {
+    e.preventDefault();
+    if (e.target.closest('.btn_close')) {
+      notify(ModalEvent.close, {});
+    }
+  }
+
+  openModal() {
+    this.element.style.display = 'block';
+  }
+
+  closeModal() {
+    this.element.style.display = 'none';
   }
 
   render() {
@@ -62,5 +83,6 @@ export default class PaymentMethod extends Component {
 
     const innerNode = templateToElementNodes(template);
     appendChildAll(this.element, innerNode);
+    this.addClickeventListener();
   }
 }

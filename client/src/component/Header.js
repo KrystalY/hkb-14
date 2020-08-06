@@ -32,6 +32,11 @@ export default class Header extends Component {
       notify(RouterEvent.changeUrl, {
         path: `/`,
       });
+      return;
+    }
+    if (e.target.closest('.btn_payment_method')) {
+      notify(ModalEvent.open, {});
+      return;
     }
   }
 
