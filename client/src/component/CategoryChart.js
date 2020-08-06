@@ -4,13 +4,14 @@ import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
 import { StoreEvent } from '@constant/Event.js';
 import { groupBy, formatCurrency, round } from '@utils/helper.js';
 
-import style from '@stylesheet/component/Bar.scss';
+import '@stylesheet/component/Bar.scss';
+import '@stylesheet/component/Pie.scss';
 
-export default class Chart extends Component {
+export default class CategoryChart extends Component {
   constructor() {
     const attribute = {
       tagName: 'div',
-      className: 'chart',
+      className: 'CategoryChart',
     };
 
     super({ attribute, isRenderAfterEvent: true });
@@ -68,13 +69,13 @@ export default class Chart extends Component {
     return `
       <ul class="bargraph">
         ${formatedData.reduce((acc, category, i) => {
-          return acc + this.createCategory(category, totalExpense, i);
+          return acc + this.createGraphOfCategory(category, totalExpense, i);
         }, '')}
       </ul>
     `;
   }
 
-  createCategory(category, sum, i) {
+  createGraphOfCategory(category, sum, i) {
     const percent = round((category.sum / sum) * 100, 2);
     /*html */
     return `
@@ -96,9 +97,46 @@ export default class Chart extends Component {
     </li>
     `;
   }
+  createAnc(category, sum, i) {
+    const percent = round((category.sum / sum) * 100, 2);
+    const offset = round((category.offset / sum) * 100, 2);
+    /*html */
+    return `
+      <div
+        class="pie__segment rank-${i + 1}"
+        style="--offset: ${offset}; --value: ${percent}; --over50: ${
+      percent >= 50 ? 1 : 0
+    };">
+      </div>
+    `;
+  }
+  createPieChart(data) {
+    const recordsByCategory = this.groupByCategory(data.records);
+    const formatedData = this.getSumOfEachCategory(
+      recordsByCategory,
+      data.categories,
+    );
+    const totalExpense = this.getTotalexpense(formatedData);
+    let offset = 0;
+    return `
+    <div class="wrap_pie vertical_middle horizontal_middle">
+      <div class="pie">
+        ${formatedData.reduce((acc, category, i) => {
+          const arc = this.createAnc({ ...category, offset }, totalExpense, i);
+          offset += category.sum;
+          return acc + arc;
+        }, '')}
+      </div>
+    </div>
+    `;
+  }
+
+  createCategoryStatistics(data) {
+    return this.createPieChart(data) + this.createBarGraph(data);
+  }
 
   render(data) {
-    const template = this.createBarGraph(data);
+    const template = this.createCategoryStatistics(data);
     const innerNode = templateToElementNodes(template);
     appendChildAll(this.element, innerNode);
   }
