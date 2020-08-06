@@ -79,10 +79,12 @@
       height: 100%;
       width: 100%;
       position: absolute;
-      animation-duration: 4s;
+      animation-duration: 2s;
       background-color: while;
       animation-name: rotateLeft;
       animation-fill-mode: forwards;
+      content: '';
+      animation-timing-function: linear;
     }
     .after::after {
       content: '';
@@ -92,12 +94,6 @@
       animation-duration: 1s;
       animation-name: rotateRight;
       animation-fill-mode: forwards;
-      background-color: white;
-      animation-timing-function: linear;
-    }
-    .before::before {
-      content: '';
-      animation-duration: 2s;
       background-color: white;
       animation-timing-function: linear;
     }
