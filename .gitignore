@@ -6,3 +6,4 @@ node_modules/
 # auto generated file
 server/public/
 .yarn.lock
+config.json

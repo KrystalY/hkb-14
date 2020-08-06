@@ -6,7 +6,7 @@ const renderFile = (req, res, next) => {
 };
 
 router.get('/', renderFile);
-router.get('/login(/*)?', renderFile);
+router.get('/login(/*)?', (req, res, next) => res.render('login.html'));
 router.get('/record(/*)?', renderFile);
 router.get('/calendar(/*)?', renderFile);
 router.get('/statistics(/*)?', renderFile);

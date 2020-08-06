@@ -7,6 +7,7 @@ import CategoryChart from '@src/component/CategoryChart.js';
 import { PageEvent, DateViewEvent, RouterEvent } from '@constant/Event.js';
 import { notify, subscribe } from '@constant/State.js';
 import { div } from '@utils/defaultElement.js';
+import { SigninPage } from '@src/page/SigninPage.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/main-page.scss';

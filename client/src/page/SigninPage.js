@@ -1,7 +1,6 @@
 import { subscribe } from '@constant/State.js';
 import { RouterEvent } from '@constant/Event.js';
-import { div } from '@utils/defaultElement.js';
-
+import { appendChildAll, templateToElementNodes } from '@utils/document.js';
 export default class SigninPage {
   constructor(container) {
     this.attribute = {
@@ -32,6 +31,8 @@ export default class SigninPage {
   }
 
   render() {
-    this.container.appendChild(div({ className: 'login_page' }));
+    const template = `<button>Google Login</button>`;
+    const innerNode = templateToElementNodes(template);
+    appendChildAll(this.container, innerNode);
   }
 }

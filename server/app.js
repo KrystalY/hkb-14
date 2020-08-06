@@ -9,6 +9,7 @@ const frontRouter = require('./router/front');
 
 const app = express();
 
+require('./auth/passport.js').setup(app);
 app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
