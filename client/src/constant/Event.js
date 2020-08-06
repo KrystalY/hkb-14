@@ -4,6 +4,7 @@ const Event = {
   },
   StoreEvent: {
     onUpdated: 'Store:onUpdated',
+    paymentUpdated: 'Store:paymentUpdated',
   },
   DateViewEvent: {
     onDateChanged: 'DateView:onDateChanged',

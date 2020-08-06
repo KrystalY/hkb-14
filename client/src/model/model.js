@@ -98,22 +98,31 @@ export default class Model {
 
   async createPaymentMethod({ name }) {
     const userKey = Store.user.key;
-    const { success } = await (
+    const { success, items } = await (
       await apis.createPaymentMethod({ name, userKey })
     ).json();
+    if (success) {
+      notify(StoreEvent.paymentUpdated, { paymentMethods: items });
+    }
   }
 
   async disablePaymentMethod({ paymentKey }) {
     const userKey = Store.user.key;
-    const { success } = await (
+    const { success, items } = await (
       await apis.disablePaymentMethod({ paymentKey, userKey })
     ).json();
+    if (success) {
+      notify(StoreEvent.paymentUpdated, { paymentMethods: items });
+    }
   }
 
   async enablePaymentMethod({ paymentKey }) {
     const userKey = Store.user.key;
-    const { success } = await (
+    const { success, items } = await (
       await apis.enablePaymentMethod({ paymentKey, userKey })
     ).json();
+    if (success) {
+      notify(StoreEvent.paymentUpdated, { paymentMethods: items });
+    }
   }
 }

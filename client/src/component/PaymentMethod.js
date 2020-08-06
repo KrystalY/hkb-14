@@ -25,6 +25,7 @@ export default class PaymentMethod extends Component {
   initSubscribers() {
     const subscribers = {
       [StoreEvent.onUpdated]: this.onDateChanged.bind(this),
+      [StoreEvent.paymentUpdated]: this.onDateChanged.bind(this),
       [ModalEvent.open]: this.openModal.bind(this),
       [ModalEvent.close]: this.closeModal.bind(this),
     };
@@ -38,7 +39,7 @@ export default class PaymentMethod extends Component {
 
   createMethodList(paymentMethods) {
     const methodListElement = $('.list_method');
-    methodListElement.innerHTML += Object.keys(paymentMethods).reduce(
+    methodListElement.innerHTML = Object.keys(paymentMethods).reduce(
       (acc, methodKey) => {
         return acc + this.createMethodLine(paymentMethods[methodKey]);
       },
@@ -75,7 +76,7 @@ export default class PaymentMethod extends Component {
     }
     if (e.target.closest('.btn_disable_method')) {
       notify(
-        e.target.dataset.activated === 1
+        e.target.dataset.activated == 1
           ? PaymentMethodEvent.disable
           : PaymentMethodEvent.enable,
         { paymentKey: e.target.dataset.key },

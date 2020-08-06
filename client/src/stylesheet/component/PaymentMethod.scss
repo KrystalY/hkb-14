@@ -4,6 +4,7 @@
   display: none;
 
   .wrap_payment_method {
+    overflow: auto;
     width: 500px;
     height: 500px;
     position: absolute;
@@ -22,6 +23,10 @@
       color: #fff;
       border: 0;
       background-color: $color-main;
+    }
+
+    .btn_disable_method[data-activated='1'] {
+      background-color: $color-red-d;
     }
 
     .header_payment_method {
