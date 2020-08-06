@@ -126,6 +126,13 @@ export default class CategoryChart extends Component {
           offset += category.sum;
           return acc + arc;
         }, '')}
+        <div
+          class="dummy_pie"
+          style="--offset: 0; --value: 100; --over50: 1; z-index: 10;"
+        >
+          <div class="before"></div>
+          <div class="after"></div>
+          </div>
       </div>
     </div>
     `;
