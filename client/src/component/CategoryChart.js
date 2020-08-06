@@ -107,6 +107,9 @@ export default class CategoryChart extends Component {
         style="--offset: ${offset}; --value: ${percent}; --over50: ${
       percent >= 50 ? 1 : 0
     };">
+      <span class="arc-title">
+        ${category.name}
+      </span>
       </div>
     `;
   }
