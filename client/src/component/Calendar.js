@@ -23,7 +23,6 @@ export default class Calendar extends Component {
     };
 
     super({ attribute, isRenderAfterEvent: true });
-    Object.setPrototypeOf(this, Calendar.prototype);
 
     this.initSubscribers();
     this.init();
@@ -119,7 +118,7 @@ export default class Calendar extends Component {
   }
   createBoard(boardData) {
     return `
-    <table class="calendar">
+    <table class="wrap_calendar">
       ${this.createBoardHeader()}
       ${this.createBoardContent(boardData)}
     </table>`;
