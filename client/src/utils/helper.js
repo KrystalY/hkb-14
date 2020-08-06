@@ -36,6 +36,13 @@ export const groupBy = (obj, key) => {
   }, {});
 };
 
+export const extractDataFromKey = (obj, key) => {
+  return obj.reduce((a, b) => {
+    a[b[key]] = b;
+    return a;
+  }, {});
+};
+
 export const getLastDateOfMonth = (year, month) => {
   return new Date(year, month, 0).getDate();
 };

@@ -77,10 +77,10 @@ export default class AddRecordForm extends Component {
 
   createCategoryOptions(is_income, items) {
     return Object.keys(items)
-      .map((key) => {
-        const item = items[key];
+      .map((i) => {
+        const item = items[i];
         if (item.is_income === is_income) {
-          return `<option value=${key}>${item.name}</option>`;
+          return `<option value=${item.key}>${item.name}</option>`;
         }
       })
       .join('');
@@ -88,8 +88,9 @@ export default class AddRecordForm extends Component {
 
   createPaymentOptions(items) {
     return Object.keys(items)
-      .map((key) => {
-        return `<option value=${key}>${items[key].name}</option>`;
+      .map((i) => {
+        const item = items[i];
+        return `<option value=${item.key}>${item.name}</option>`;
       })
       .join('');
   }
