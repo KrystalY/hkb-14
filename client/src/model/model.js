@@ -3,24 +3,7 @@ import { Store } from '@constant/Store.js';
 import { StoreEvent, RouterEvent, RecordEvent } from '@constant/Event.js';
 import { subscribe, notify } from '@constant/State.js';
 import { CATEGORY, MESSAGE } from '@constant/constant.js';
-
-const customPaymentMethod = {
-  4: {
-    name: '현대카드',
-    is_activated: 1,
-  },
-};
-
-const customCategory = {
-  1: {
-    name: '쇼핑',
-    is_income: 0,
-  },
-  2: {
-    name: '용돈',
-    is_income: 1,
-  },
-};
+import { extractDataFromKey } from '@utils/helper.js';
 
 export default class Model {
   constructor() {
@@ -56,7 +39,7 @@ export default class Model {
     let expenditureSum = 0,
       incomeSum = 0;
 
-    const data = await (await apis.findRecord({ year, month })).json();
+    const data = await (await apis.getRecord({ year, month })).json();
     if (!data.success) {
       alert(MESSAGE.API_USER_INPUT_ERROR);
       location.href = '/';
@@ -83,7 +66,13 @@ export default class Model {
     Store.user = {
       key: 1,
     };
-    Store.categories = customCategory;
-    Store.paymentMethods = customPaymentMethod;
+
+    const categoriesData = await (await apis.getCategory()).json();
+    const paymentMethodsData = await (
+      await apis.getPaymentMethod(Store.user)
+    ).json();
+
+    Store.categories = extractDataFromKey(categoriesData.items, 'key');
+    Store.paymentMethods = extractDataFromKey(paymentMethodsData.items, 'key');
   }
 }

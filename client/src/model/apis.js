@@ -28,5 +28,8 @@ const DELETE = async (url = '') =>
 
 export default {
   createRecord: async (data) => await POST('/record', data),
-  findRecord: async ({ year, month }) => await GET(`/record/${year}/${month}`),
+  getRecord: async ({ year, month }) => await GET(`/record/${year}/${month}`),
+  getCategory: async () => await GET(`/user/category`),
+  getPaymentMethod: async (user) =>
+    await GET(`/user/payment-method/${user.key}`),
 };
