@@ -1,7 +1,7 @@
 import Component from '@component/Component.js';
-import { appendChildAll, templateToElementNodes } from '@utils/document.js';
+import { appendChildAll, templateToElementNodes, $ } from '@utils/document.js';
 import { notify } from '@constant/State.js';
-import { RouterEvent } from '@src/constant/Event.js';
+import { RouterEvent, StoreEvent } from '@src/constant/Event.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/Navigator.scss';
@@ -19,8 +19,14 @@ export default class Navigator extends Component {
     this.init();
   }
 
+  onDateChanged(data) {
+    const { menu } = data.currentPath;
+    const tabbedElement = $(`.tab li[data-name=${menu || 'record'}]`);
+    tabbedElement.classList.add('tabbed');
+  }
+
   initSubscribers() {
-    const subscribers = {};
+    const subscribers = { [StoreEvent.onUpdated]: this.onDateChanged };
     this.setSubscribers(subscribers);
   }
 
@@ -33,6 +39,7 @@ export default class Navigator extends Component {
   }
 
   onClickTab(e) {
+    e.target.classList.add('tabbed');
     notify(RouterEvent.changeUrl, {
       path: `/${e.target.dataset.name}`,
       useCurrentData: true,
@@ -42,7 +49,7 @@ export default class Navigator extends Component {
   render() {
     const template = `
     <ul class="tab">
-      <li class="tabbed" data-name="record">내역</li>
+      <li data-name="record">내역</li>
       <li data-name="calendar">달력</li>
       <li data-name="statistics">통계</li>
     </ul>
