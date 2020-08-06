@@ -11,7 +11,7 @@ export default class CategoryChart extends Component {
   constructor() {
     const attribute = {
       tagName: 'div',
-      className: 'CategoryChart',
+      className: 'category_chart',
     };
 
     super({ attribute, isRenderAfterEvent: true });
