@@ -19,7 +19,6 @@ export default class Modal extends Component {
   }
 
   openModal() {
-    console.log(this.element.style.display);
     this.element.style.display = 'block';
   }
 

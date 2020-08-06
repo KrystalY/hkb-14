@@ -12,7 +12,7 @@ export default class PaymentMethod extends Component {
       className: 'payment_method',
     };
 
-    super({ attribute, isRenderAfterEvent: true });
+    super({ attribute });
 
     this.initSubscribers();
     this.init();
@@ -24,11 +24,37 @@ export default class PaymentMethod extends Component {
 
   initSubscribers() {
     const subscribers = {
-      [StoreEvent.onUpdated]: this.render,
+      [StoreEvent.onUpdated]: this.onDateChanged.bind(this),
       [ModalEvent.open]: this.openModal.bind(this),
       [ModalEvent.close]: this.closeModal.bind(this),
     };
     this.setSubscribers(subscribers);
+  }
+
+  onDateChanged(data) {
+    const { paymentMethods } = data;
+    this.createMethodList(paymentMethods);
+  }
+
+  createMethodList(paymentMethods) {
+    const methodListElement = $('.list_method');
+    methodListElement.innerHTML += Object.keys(paymentMethods).reduce(
+      (acc, methodKey) => {
+        return acc + this.createMethodLine(paymentMethods[methodKey]);
+      },
+      '',
+    );
+  }
+
+  createMethodLine(method) {
+    return `
+    <li>
+      <div class="wrap_method_info vertical_middle horizontal_middle">
+        <h3 class="name_method">${method.name}</h3>
+        <button class="btn_delete_method" data-key=${method.key}>삭제</button>
+      </div>
+    </li>
+    `;
   }
 
   addClickeventListener() {
@@ -64,20 +90,7 @@ export default class PaymentMethod extends Component {
           <input type="text" id="input_method"></input>
           <button class="btn_apply">완료</button>
         </form>
-        <ul class="list_method">
-          <li>
-            <div class="wrap_method_info vertical_middle horizontal_middle">
-              <h3 class="name_method">현대카드</h3>
-              <button class="btn_delete_method">삭제</button>
-            </div>
-          </li>
-          <li>
-            <div class="wrap_method_info vertical_middle horizontal_middle">
-              <h3 class="name_method">카카오체크카드</h3>
-              <button class="btn_delete_method">삭제</button>
-            </div>
-          </li>
-        </ul>
+        <ul class="list_method"></ul>
       </div>
     `;
 
