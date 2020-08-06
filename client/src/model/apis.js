@@ -32,4 +32,10 @@ export default {
   getCategory: async () => await GET(`/user/category`),
   getPaymentMethod: async (user) =>
     await GET(`/user/payment-method/${user.key}`),
+  createPaymentMethod: async (data) =>
+    await POST('/user/payment-method/create', data),
+  disablePaymentMethod: async (data) =>
+    await POST('/user/payment-method/disable', data),
+  enablePaymentMethod: async (data) =>
+    await POST('/user/payment-method/enable', data),
 };

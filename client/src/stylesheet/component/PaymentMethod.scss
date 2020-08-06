@@ -1,6 +1,8 @@
 @import '@stylesheet/_config.scss';
+
 .payment_method {
   display: none;
+
   .wrap_payment_method {
     width: 500px;
     height: 500px;
@@ -13,6 +15,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 20;
+
     button {
       padding: 2px 20px;
       border-radius: 15px;
@@ -20,11 +23,13 @@
       border: 0;
       background-color: $color-main;
     }
+
     .header_payment_method {
       padding: 20px 0;
       background-color: $color-main;
       color: #fff;
       position: relative;
+
       .btn_close {
         position: absolute;
         right: 5px;
@@ -32,13 +37,16 @@
         font-size: 20px;
       }
     }
+
     .add_method_form {
       padding: 20px;
+
       #input_method {
         border-width: 0 0 1px 0;
         flex: 1;
         margin: 0 10px;
       }
+
       .btn_apply {
       }
     }
@@ -46,12 +54,20 @@
     .list_method {
       border-top: 1px solid $color-gray-c;
     }
+
     .wrap_method_info {
       padding: 10px 20px;
       border-bottom: 1px solid $color-gray-c;
+
       .btn_delete_method {
         margin-left: auto;
       }
+
+      .disabled_method {
+        text-decoration: line-through;
+        color: $color-gray-a;
+      }
+
       .name_method {
         flex: 1;
         text-align: center;
