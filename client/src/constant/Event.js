@@ -25,6 +25,9 @@ const Event = {
     enable: 'PaymentMethod:enable',
     create: 'PaymentMethod:create',
   },
+  FilterEvent: {
+    onFilterChanged: 'Filter:onFilterChanged',
+  },
 };
 
 export const PageEvent = Event.PageEvent;
@@ -34,4 +37,6 @@ export const RouterEvent = Event.RouterEvent;
 export const RecordEvent = Event.RecordEvent;
 export const ModalEvent = Event.ModalEvent;
 export const PaymentMethodEvent = Event.PaymentMethod;
+export const FilterEvent = Event.FilterEvent;
+
 export default Event;

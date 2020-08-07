@@ -8,7 +8,7 @@ import {
 import { notify } from '@constant/State.js';
 import { StoreEvent, RecordEvent } from '@constant/Event.js';
 import { getCurrentDatetime } from '@utils/helper.js';
-import { CATEGORY, MESSAGE } from '@constant/constant.js';
+import { CATEGORY, PAYMENT_METHOD, MESSAGE } from '@constant/constant.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/AddRecordForm.scss';
@@ -55,15 +55,19 @@ export default class AddRecordForm extends Component {
   onClickSubmit(e) {
     const $form = e.target.closest(`.${this.attribute.className}`);
     const data = formToDataObject($form);
-    let isEmpty = false;
-    Object.values(data).forEach((value) => {
+    const isEmpty = Object.values(data).some((value) => {
       if (value === '') {
-        isEmpty = true;
+        return true;
       }
     });
 
     if (isEmpty) {
       alert(MESSAGE.FORM_INPUT_EMPTY_ERROR);
+      return;
+    }
+
+    if (!Number.isInteger(data.amount)) {
+      alert(MESSAGE.FORM_VALIDATOR_AMOUNT_ERROR);
       return;
     }
 
@@ -90,7 +94,9 @@ export default class AddRecordForm extends Component {
     return Object.keys(items)
       .map((i) => {
         const item = items[i];
-        return `<option value=${item.key}>${item.name}</option>`;
+        if (item.is_activated === PAYMENT_METHOD.ACTIVATED) {
+          return `<option value=${item.key}>${item.name}</option>`;
+        }
       })
       .join('');
   }
@@ -156,7 +162,7 @@ export default class AddRecordForm extends Component {
       <div class="item">
         <div class="title">금액</div>
         <div class="content">
-          <input type="text" name="amount" required>
+          <input type="number" name="amount" required>
         </div>
       </div>
       <div class="item">

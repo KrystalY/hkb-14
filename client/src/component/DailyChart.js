@@ -30,7 +30,7 @@ export default class DailyChart extends Component {
 
   initSubscribers() {
     const subscribers = {
-      [StoreEvent.onUpdated]: this.renderLineChart.bind(this),
+      [StoreEvent.onUpdated]: this.renderLineChart,
     };
     this.setSubscribers(subscribers);
   }
@@ -174,13 +174,12 @@ export default class DailyChart extends Component {
 
   drawDailyData(box, data) {
     const pathPointData = [];
+    const heightRatio = (box.height - box.lineHeight) / data.maxValue;
 
     const circles = data.items
       .map((item, i) => {
         const cx = box.circleStartX + box.circleX * i;
-        let cy =
-          box.height -
-          item.expenditureSum * ((box.height - box.lineHeight) / data.maxValue);
+        let cy = box.height - item.expenditureSum * heightRatio;
         if (data.maxValue === 0) {
           cy = box.endY;
         }
@@ -189,7 +188,6 @@ export default class DailyChart extends Component {
         return `<circle cx="${cx}" cy="${cy}" r="4" class="point" />`;
       })
       .join('');
-    console.dir(pathPointData);
 
     const pathData = pathPointData.map((point, i) => {
       let [x, y] = point;

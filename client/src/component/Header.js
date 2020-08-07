@@ -1,7 +1,8 @@
 import Component from '@component/Component.js';
 import { appendChildAll, templateToElementNodes } from '@utils/document.js';
 import { notify } from '@constant/State.js';
-import { RouterEvent, ModalEvent } from '@src/constant/Event.js';
+import { RouterEvent, ModalEvent } from '@constant/Event.js';
+
 // eslint-disable-next-line
 import style from '@stylesheet/component/Header.scss';
 

@@ -1,11 +1,12 @@
-// eslint-disable-next-line
 import Component from '@component/Component.js';
 import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
 import { StoreEvent } from '@constant/Event.js';
 import { groupBy, formatCurrency, round } from '@utils/helper.js';
 
-import '@stylesheet/component/Bar.scss';
-import '@stylesheet/component/Pie.scss';
+// eslint-disable-next-line
+import styleBar from '@stylesheet/component/Bar.scss';
+// eslint-disable-next-line
+import stylePie from '@stylesheet/component/Pie.scss';
 
 export default class CategoryChart extends Component {
   constructor() {

@@ -2,6 +2,7 @@ import Component from '@component/Component.js';
 import { appendChildAll, templateToElementNodes } from '@utils/document.js';
 import { ModalEvent } from '@src/constant/Event.js';
 import { notify } from '@constant/State.js';
+
 // eslint-disable-next-line
 import style from '@stylesheet/component/Modal.scss';
 
@@ -24,6 +25,7 @@ export default class Modal extends Component {
 
   closeModal() {
     this.element.style.display = 'none';
+    location.reload();
   }
 
   addClickeventListener() {
@@ -36,8 +38,8 @@ export default class Modal extends Component {
 
   initSubscribers() {
     const subscribers = {
-      [ModalEvent.open]: this.openModal.bind(this),
-      [ModalEvent.close]: this.closeModal.bind(this),
+      [ModalEvent.open]: this.openModal,
+      [ModalEvent.close]: this.closeModal,
     };
     this.setSubscribers(subscribers);
   }

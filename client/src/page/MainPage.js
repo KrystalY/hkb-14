@@ -5,6 +5,7 @@ import RecordGroupList from '@component/RecordGroupList.js';
 import Calendar from '@component/Calendar.js';
 import CategoryChart from '@component/CategoryChart.js';
 import DailyChart from '@component/DailyChart.js';
+import CategoryFilter from '@component/CategoryFilter';
 import { PageEvent, RouterEvent } from '@constant/Event.js';
 import { notify, subscribe } from '@constant/State.js';
 import { div } from '@utils/defaultElement.js';
@@ -47,15 +48,20 @@ export default class MainPage {
         return div(
           { className: 'section' },
           new AddRecordForm(),
+          new CategoryFilter(),
           new RecordGroupList(),
         );
       case 'calendar':
-        return div({ className: 'section' }, new Calendar());
+        return div(
+          { className: 'section' },
+          new CategoryFilter(),
+          new Calendar(),
+        );
       case 'statistics':
         return div(
           { className: 'section' },
-          new CategoryChart(),
           new DailyChart(),
+          new CategoryChart(),
         );
       default:
         return div({ className: 'section' });
