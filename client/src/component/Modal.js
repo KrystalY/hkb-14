@@ -25,6 +25,7 @@ export default class Modal extends Component {
 
   closeModal() {
     this.element.style.display = 'none';
+    location.reload();
   }
 
   addClickeventListener() {

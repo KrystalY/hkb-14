@@ -58,7 +58,7 @@ export default class PaymentMethod extends Component {
         <button class="btn_disable_method" data-key=${
           method.key
         } data-activated=${method.is_activated}>${
-      method.is_activated ? '삭제' : '추가'
+      method.is_activated ? '미사용' : '사용'
     }</button>
       </div>
     </li>
@@ -114,7 +114,7 @@ export default class PaymentMethod extends Component {
         <form class="add_method_form vertical_middle">
           <label for="input_method" >결제 수단 이름</label>
           <input type="text" id="input_method" placeholder="2~10 사이 이름을 입력해주세요."></input>
-          <button class="btn_apply">완료</button>
+          <button class="btn_apply">등록</button>
         </form>
         <ul class="list_method"></ul>
       </div>

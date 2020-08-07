@@ -12,3 +12,8 @@ export const CATEGORY = {
   INCOME: 1,
   EXPENDITURE: 0,
 };
+
+export const PAYMENT_METHOD = {
+  ACTIVATED: 1,
+  DEACTIVATED: 0,
+};

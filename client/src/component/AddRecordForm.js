@@ -8,7 +8,7 @@ import {
 import { notify } from '@constant/State.js';
 import { StoreEvent, RecordEvent } from '@constant/Event.js';
 import { getCurrentDatetime } from '@utils/helper.js';
-import { CATEGORY, MESSAGE } from '@constant/constant.js';
+import { CATEGORY, PAYMENT_METHOD, MESSAGE } from '@constant/constant.js';
 
 // eslint-disable-next-line
 import style from '@stylesheet/component/AddRecordForm.scss';
@@ -94,7 +94,9 @@ export default class AddRecordForm extends Component {
     return Object.keys(items)
       .map((i) => {
         const item = items[i];
-        return `<option value=${item.key}>${item.name}</option>`;
+        if (item.is_activated === PAYMENT_METHOD.ACTIVATED) {
+          return `<option value=${item.key}>${item.name}</option>`;
+        }
       })
       .join('');
   }
