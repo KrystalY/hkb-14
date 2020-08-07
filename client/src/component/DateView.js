@@ -1,10 +1,14 @@
-import Component from '@component/Component.js';
-import { StoreEvent, RouterEvent } from '@constant/Event.js';
-import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
-import { notify } from '@constant/State.js';
+import Component from './Component.js';
+import { StoreEvent, RouterEvent } from '../constant/Event.js';
+import {
+  $,
+  appendChildAll,
+  templateToElementNodes,
+} from '../utils/document.js';
+import { notify } from '../constant/State.js';
 
 // eslint-disable-next-line
-import style from '@stylesheet/component/DateView.scss';
+import style from '../stylesheet/component/DateView.scss';
 
 export default class DateView extends Component {
   constructor() {

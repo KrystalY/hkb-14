@@ -1,4 +1,4 @@
-import { SERVER } from '@constant/constant.js';
+import { SERVER } from '../constant/constant.js';
 
 const serverUrl = SERVER.API_DOMAIN;
 const defaultOptions = (method) => ({

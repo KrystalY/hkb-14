@@ -1,10 +1,14 @@
-import Component from '@component/Component.js';
-import { StoreEvent } from '@constant/Event.js';
-import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
-import { analyzeDatetime, groupBy, formatCurrency } from '@utils/helper.js';
+import Component from './Component.js';
+import { StoreEvent } from '../constant/Event.js';
+import {
+  $,
+  appendChildAll,
+  templateToElementNodes,
+} from '../utils/document.js';
+import { analyzeDatetime, groupBy, formatCurrency } from '../utils/helper.js';
 
 // eslint-disable-next-line
-import style from '@stylesheet/component/RecordGroupList.scss';
+import style from '../stylesheet/component/RecordGroupList.scss';
 
 export default class RecordGroupList extends Component {
   constructor() {

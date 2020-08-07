@@ -1,5 +1,5 @@
-import { subscribe, notify, clearSubscribers } from '@src/constant/State';
-import { RouterEvent, PageEvent } from '@src/constant/Event.js';
+import { subscribe, notify, clearSubscribers } from './constant/State.js';
+import { RouterEvent, PageEvent } from './constant/Event.js';
 
 export default class Router {
   constructor() {

@@ -1,17 +1,17 @@
-import Component from '@component/Component.js';
+import Component from './Component.js';
 import {
   $,
   appendChildAll,
   formToDataObject,
   templateToElementNodes,
-} from '@utils/document.js';
-import { notify } from '@constant/State.js';
-import { StoreEvent, RecordEvent } from '@constant/Event.js';
-import { getCurrentDatetime } from '@utils/helper.js';
-import { CATEGORY, PAYMENT_METHOD, MESSAGE } from '@constant/constant.js';
+} from '../utils/document.js';
+import { notify } from '../constant/State.js';
+import { StoreEvent, RecordEvent } from '../constant/Event.js';
+import { getCurrentDatetime } from '../utils/helper.js';
+import { CATEGORY, PAYMENT_METHOD, MESSAGE } from '../constant/constant.js';
 
 // eslint-disable-next-line
-import style from '@stylesheet/component/AddRecordForm.scss';
+import style from '../stylesheet/component/AddRecordForm.scss';
 
 export default class AddRecordForm extends Component {
   constructor() {

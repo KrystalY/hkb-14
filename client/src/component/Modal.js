@@ -1,10 +1,10 @@
-import Component from '@component/Component.js';
-import { appendChildAll, templateToElementNodes } from '@utils/document.js';
-import { ModalEvent } from '@src/constant/Event.js';
-import { notify } from '@constant/State.js';
+import Component from './Component.js';
+import { appendChildAll, templateToElementNodes } from '../utils/document.js';
+import { ModalEvent } from '../constant/Event.js';
+import { notify } from '../constant/State.js';
 
 // eslint-disable-next-line
-import style from '@stylesheet/component/Modal.scss';
+import style from '../stylesheet/component/Modal.scss';
 
 export default class Modal extends Component {
   constructor() {

@@ -1,6 +1,6 @@
-import { subscribe } from '@constant/State.js';
-import { createElement } from '@utils/document.js';
-import { PageEvent } from '@constant/Event.js';
+import { subscribe } from '../constant/State.js';
+import { createElement } from '../utils/document.js';
+import { PageEvent } from '../constant/Event.js';
 
 export default class Component {
   constructor(args) {

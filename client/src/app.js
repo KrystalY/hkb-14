@@ -1,11 +1,11 @@
-import Model from '@src/model/model.js';
-import Layout from '@src/page/Layout.js';
-import { RouterEvent } from '@constant/Event.js';
-import { notify } from '@constant/State.js';
-import Router from '@src/router.js';
+import Model from './model/model.js';
+import Layout from './page/Layout.js';
+import { RouterEvent } from './constant/Event.js';
+import { notify } from './constant/State.js';
+import Router from './router.js';
 
 // eslint-disable-next-line
-import style from '@stylesheet/base.scss';
+import style from './stylesheet/base.scss';
 
 export default class App {
   constructor(container) {

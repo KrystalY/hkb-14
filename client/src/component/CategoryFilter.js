@@ -1,16 +1,16 @@
-import Component from '@component/Component.js';
+import Component from './Component.js';
 import {
   $,
   appendChildAll,
   templateToElementNodes,
   formToDataObject,
-} from '@utils/document.js';
-import { notify } from '@constant/State.js';
-import { StoreEvent, FilterEvent } from '@constant/Event.js';
-import { formatCurrency } from '@utils/helper.js';
+} from '../utils/document.js';
+import { notify } from '../constant/State.js';
+import { StoreEvent, FilterEvent } from '../constant/Event.js';
+import { formatCurrency } from '../utils/helper.js';
 
 // eslint-disable-next-line
-import style from '@stylesheet/component/CategoryFilter.scss';
+import style from '../stylesheet/component/CategoryFilter.scss';
 
 export default class CategoryFilter extends Component {
   constructor() {

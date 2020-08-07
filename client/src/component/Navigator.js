@@ -1,10 +1,14 @@
-import Component from '@component/Component.js';
-import { appendChildAll, templateToElementNodes, $ } from '@utils/document.js';
-import { notify } from '@constant/State.js';
-import { RouterEvent, StoreEvent } from '@constant/Event.js';
+import Component from './Component.js';
+import {
+  appendChildAll,
+  templateToElementNodes,
+  $,
+} from '../utils/document.js';
+import { notify } from '../constant/State.js';
+import { RouterEvent, StoreEvent } from '../constant/Event.js';
 
 // eslint-disable-next-line
-import style from '@stylesheet/component/Navigator.scss';
+import style from '../stylesheet/component/Navigator.scss';
 
 export default class Navigator extends Component {
   constructor() {

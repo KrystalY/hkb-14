@@ -1,15 +1,15 @@
-import apis from '@src/model/apis.js';
-import { Store } from '@constant/Store.js';
+import apis from '../model/apis.js';
+import { Store } from '../constant/Store.js';
 import {
   StoreEvent,
   RouterEvent,
   RecordEvent,
   PaymentMethodEvent,
   FilterEvent,
-} from '@constant/Event.js';
-import { subscribe, notify } from '@constant/State.js';
-import { CATEGORY, MESSAGE } from '@constant/constant.js';
-import { extractDataFromKey } from '@utils/helper.js';
+} from '../constant/Event.js';
+import { subscribe, notify } from '../constant/State.js';
+import { CATEGORY, MESSAGE } from '../constant/constant.js';
+import { extractDataFromKey } from '../utils/helper.js';
 
 export default class Model {
   constructor() {

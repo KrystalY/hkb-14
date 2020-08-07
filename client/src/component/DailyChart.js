@@ -1,11 +1,15 @@
-import Component from '@component/Component.js';
-import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
-import { StoreEvent } from '@constant/Event.js';
-import { formatCurrency, getLastDateOfMonth } from '@utils/helper.js';
-import { CATEGORY } from '@constant/constant.js';
+import Component from './Component.js';
+import {
+  $,
+  appendChildAll,
+  templateToElementNodes,
+} from '../utils/document.js';
+import { StoreEvent } from '../constant/Event.js';
+import { formatCurrency, getLastDateOfMonth } from '../utils/helper.js';
+import { CATEGORY } from '../constant/constant.js';
 
 // eslint-disable-next-line
-import style from '@stylesheet/component/DailyChart.scss';
+import style from '../stylesheet/component/DailyChart.scss';
 
 export default class DailyChart extends Component {
   constructor() {

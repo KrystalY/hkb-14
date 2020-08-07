@@ -1,16 +1,20 @@
-import Component from '@component/Component.js';
-import { $, appendChildAll, templateToElementNodes } from '@utils/document.js';
+import Component from './Component.js';
+import {
+  $,
+  appendChildAll,
+  templateToElementNodes,
+} from '../utils/document.js';
 import {
   getLastDateOfMonth,
   getFirstDayOfWeekInMonth,
   groupBy,
   chunkArray,
   formatCurrency,
-} from '@utils/helper.js';
-import { StoreEvent } from '@constant/Event.js';
+} from '../utils/helper.js';
+import { StoreEvent } from '../constant/Event.js';
 
 // eslint-disable-next-line
-import style from '@stylesheet/component/Calendar.scss';
+import style from '../stylesheet/component/Calendar.scss';
 
 const DAY_IN_A_BOARD = 42;
 const WEEK_IN_A_BOARD = 7;
