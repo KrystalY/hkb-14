@@ -78,11 +78,11 @@ export default class AddRecordForm extends Component {
     this.state.currentGroup = Number.parseInt(e.target.value);
     this.renderCategoryOptions(this.state.categories);
     if (e.target.id === 'optionSpend') {
-      $('#payment_method_list').style.display = 'none';
+      $('#payment_method_list').style.display = 'block';
       return;
     }
     if (e.target.id === 'optionIncome') {
-      $('#payment_method_list').style.display = 'block';
+      $('#payment_method_list').style.display = 'none';
       return;
     }
   }
