@@ -77,6 +77,14 @@ export default class AddRecordForm extends Component {
   onChangeCategoryGroup(e) {
     this.state.currentGroup = Number.parseInt(e.target.value);
     this.renderCategoryOptions(this.state.categories);
+    if (e.target.id === 'optionSpend') {
+      $('#payment_method_list').style.display = 'none';
+      return;
+    }
+    if (e.target.id === 'optionIncome') {
+      $('#payment_method_list').style.display = 'block';
+      return;
+    }
   }
 
   createCategoryOptions(is_income, items) {
@@ -102,9 +110,24 @@ export default class AddRecordForm extends Component {
   }
 
   renderOptions(data) {
+    console.log(data);
     this.state.categories = data.categories;
     this.renderCategoryOptions(data.categories);
     this.renderPaymentMethodOptions(data.paymentMethods);
+    this.changeDateValue(data);
+  }
+
+  changeDateValue(data) {
+    const yearOfToday = new Date().getFullYear();
+    const monthOfToday = new Date().getMonth();
+    console.log(yearOfToday, monthOfToday);
+    if (yearOfToday === data.year && monthOfToday === data.month) {
+      return;
+    }
+    console.log(`${data.year}-${data.month}-01`);
+    $('.content input[name="record_at"]').value = `${data.year}-${
+      data.month < 10 ? '0' : ''
+    }${data.month}-01`;
   }
 
   renderCategoryOptions(data) {
@@ -149,7 +172,7 @@ export default class AddRecordForm extends Component {
           </select>
         </div>
       </div>
-      <div class="item">
+      <div class="item"  id="payment_method_list">
         <div class="title">결제수단</div>
         <div class="content">
           <select name="payment_method" required>
