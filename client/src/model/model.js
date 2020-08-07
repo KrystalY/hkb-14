@@ -5,6 +5,7 @@ import {
   RouterEvent,
   RecordEvent,
   PaymentMethodEvent,
+  FilterEvent,
 } from '@constant/Event.js';
 import { subscribe, notify } from '@constant/State.js';
 import { CATEGORY, MESSAGE } from '@constant/constant.js';
@@ -23,6 +24,7 @@ export default class Model {
       [PaymentMethodEvent.disable]: this.disablePaymentMethod,
       [PaymentMethodEvent.enable]: this.enablePaymentMethod,
       [PaymentMethodEvent.create]: this.createPaymentMethod,
+      [FilterEvent.onFilterChanged]: this.createFilterData,
     };
 
     Object.entries(this.subscribers).map(([key, eventHandler]) => {
@@ -93,6 +95,8 @@ export default class Model {
     Store.categories = extractDataFromKey(categoriesData.items, 'key');
     Store.paymentMethods = extractDataFromKey(paymentMethodsData.items, 'key');
   }
+
+  async createFilterData(data) {}
 
   async createPaymentMethod({ name }) {
     const userKey = Store.user.key;

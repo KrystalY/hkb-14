@@ -1,0 +1,18 @@
+@import '@stylesheet/_config.scss';
+
+.category_filter {
+  padding: 20px 0;
+
+  .filter_box {
+    width: 240px;
+    font-size: 1.2em;
+  }
+
+  .expenditure {
+    color: #3979ff;
+  }
+
+  .income {
+    color: #29b6ae;
+  }
+}
