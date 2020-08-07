@@ -12,24 +12,22 @@ import { extractDataFromKey } from '@utils/helper.js';
 
 export default class Model {
   constructor() {
-    const attribute = { uid: Model };
-    subscribe(attribute, RouterEvent.onStateChanged, this.getRecord.bind(this));
-    subscribe(attribute, RecordEvent.create, this.createRecord.bind(this));
-    subscribe(
-      attribute,
-      PaymentMethodEvent.disable,
-      this.disablePaymentMethod.bind(this),
-    );
-    subscribe(
-      attribute,
-      PaymentMethodEvent.enable,
-      this.enablePaymentMethod.bind(this),
-    );
-    subscribe(
-      attribute,
-      PaymentMethodEvent.create,
-      this.createPaymentMethod.bind(this),
-    );
+    this.attribute = { uid: Model };
+    this.setSubscribers();
+  }
+
+  setSubscribers() {
+    this.subscribers = {
+      [RouterEvent.onStateChanged]: this.getRecord,
+      [RecordEvent.create]: this.createRecord,
+      [PaymentMethodEvent.disable]: this.disablePaymentMethod,
+      [PaymentMethodEvent.enable]: this.enablePaymentMethod,
+      [PaymentMethodEvent.create]: this.createPaymentMethod,
+    };
+
+    Object.entries(this.subscribers).map(([key, eventHandler]) => {
+      subscribe(this.attribute, key, eventHandler.bind(this));
+    });
   }
 
   convertData(item) {

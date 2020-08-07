@@ -25,10 +25,10 @@ export default class PaymentMethod extends Component {
 
   initSubscribers() {
     const subscribers = {
-      [StoreEvent.onUpdated]: this.onDateChanged.bind(this),
-      [StoreEvent.paymentUpdated]: this.onDateChanged.bind(this),
-      [ModalEvent.open]: this.openModal.bind(this),
-      [ModalEvent.close]: this.closeModal.bind(this),
+      [StoreEvent.onUpdated]: this.onDateChanged,
+      [StoreEvent.paymentUpdated]: this.onDateChanged,
+      [ModalEvent.open]: this.openModal,
+      [ModalEvent.close]: this.closeModal,
     };
     this.setSubscribers(subscribers);
   }

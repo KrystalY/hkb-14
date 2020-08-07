@@ -37,8 +37,8 @@ export default class Modal extends Component {
 
   initSubscribers() {
     const subscribers = {
-      [ModalEvent.open]: this.openModal.bind(this),
-      [ModalEvent.close]: this.closeModal.bind(this),
+      [ModalEvent.open]: this.openModal,
+      [ModalEvent.close]: this.closeModal,
     };
     this.setSubscribers(subscribers);
   }

@@ -30,7 +30,7 @@ export default class DailyChart extends Component {
 
   initSubscribers() {
     const subscribers = {
-      [StoreEvent.onUpdated]: this.renderLineChart.bind(this),
+      [StoreEvent.onUpdated]: this.renderLineChart,
     };
     this.setSubscribers(subscribers);
   }
