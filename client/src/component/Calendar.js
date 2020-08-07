@@ -48,7 +48,7 @@ export default class Calendar extends Component {
       return { day: i + 1 + lastMonthLastDate - firstDayOfWeek, dummy: true };
     });
     const thisMonth = [...Array(currentMonthLastDate).keys()].map((i) => {
-      return { day: i + 1, ...(formatedData[i] || {}) };
+      return { day: i, ...(formatedData[i] || {}) };
     });
     const nextMonth = [
       ...Array(DAY_IN_A_BOARD - lastMonth.length - thisMonth.length).keys(),
