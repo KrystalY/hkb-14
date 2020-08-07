@@ -66,7 +66,7 @@ export default class AddRecordForm extends Component {
       return;
     }
 
-    if (!Number.isInteger(data.amount)) {
+    if (!Number.isInteger(data.amount - 0)) {
       alert(MESSAGE.FORM_VALIDATOR_AMOUNT_ERROR);
       return;
     }
