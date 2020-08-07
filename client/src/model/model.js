@@ -1,6 +1,11 @@
 import apis from '@src/model/apis.js';
 import { Store } from '@constant/Store.js';
-import { StoreEvent, RouterEvent, RecordEvent } from '@constant/Event.js';
+import {
+  StoreEvent,
+  RouterEvent,
+  RecordEvent,
+  PaymentMethodEvent,
+} from '@constant/Event.js';
 import { subscribe, notify } from '@constant/State.js';
 import { CATEGORY, MESSAGE } from '@constant/constant.js';
 import { extractDataFromKey } from '@utils/helper.js';
@@ -10,6 +15,21 @@ export default class Model {
     const attribute = { uid: Model };
     subscribe(attribute, RouterEvent.onStateChanged, this.getRecord.bind(this));
     subscribe(attribute, RecordEvent.create, this.createRecord.bind(this));
+    subscribe(
+      attribute,
+      PaymentMethodEvent.disable,
+      this.disablePaymentMethod.bind(this),
+    );
+    subscribe(
+      attribute,
+      PaymentMethodEvent.enable,
+      this.enablePaymentMethod.bind(this),
+    );
+    subscribe(
+      attribute,
+      PaymentMethodEvent.create,
+      this.createPaymentMethod.bind(this),
+    );
   }
 
   convertData(item) {
@@ -74,5 +94,35 @@ export default class Model {
 
     Store.categories = extractDataFromKey(categoriesData.items, 'key');
     Store.paymentMethods = extractDataFromKey(paymentMethodsData.items, 'key');
+  }
+
+  async createPaymentMethod({ name }) {
+    const userKey = Store.user.key;
+    const { success, items } = await (
+      await apis.createPaymentMethod({ name, userKey })
+    ).json();
+    if (success) {
+      notify(StoreEvent.paymentUpdated, { paymentMethods: items });
+    }
+  }
+
+  async disablePaymentMethod({ paymentKey }) {
+    const userKey = Store.user.key;
+    const { success, items } = await (
+      await apis.disablePaymentMethod({ paymentKey, userKey })
+    ).json();
+    if (success) {
+      notify(StoreEvent.paymentUpdated, { paymentMethods: items });
+    }
+  }
+
+  async enablePaymentMethod({ paymentKey }) {
+    const userKey = Store.user.key;
+    const { success, items } = await (
+      await apis.enablePaymentMethod({ paymentKey, userKey })
+    ).json();
+    if (success) {
+      notify(StoreEvent.paymentUpdated, { paymentMethods: items });
+    }
   }
 }

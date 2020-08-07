@@ -12,4 +12,23 @@ async function getPaymentMethod(userKey) {
   return paymentMethod;
 }
 
-export { getCategory, getPaymentMethod };
+async function insertPaymentMethod(name, userKey) {
+  const paymentMethod = await userModel.insertPaymentMethod(name, userKey);
+  return paymentMethod;
+}
+
+async function updatePaymentMethod(isActivated, userKey, paymentKey) {
+  const paymentMethod = await userModel.updatePaymentMethod(
+    isActivated,
+    userKey,
+    paymentKey,
+  );
+  return paymentMethod;
+}
+
+export {
+  getCategory,
+  getPaymentMethod,
+  insertPaymentMethod,
+  updatePaymentMethod,
+};
