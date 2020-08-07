@@ -55,15 +55,19 @@ export default class AddRecordForm extends Component {
   onClickSubmit(e) {
     const $form = e.target.closest(`.${this.attribute.className}`);
     const data = formToDataObject($form);
-    let isEmpty = false;
-    Object.values(data).forEach((value) => {
+    const isEmpty = Object.values(data).some((value) => {
       if (value === '') {
-        isEmpty = true;
+        return true;
       }
     });
 
     if (isEmpty) {
       alert(MESSAGE.FORM_INPUT_EMPTY_ERROR);
+      return;
+    }
+
+    if (!Number.isInteger(data.amount)) {
+      alert(MESSAGE.FORM_VALIDATOR_AMOUNT_ERROR);
       return;
     }
 
@@ -156,7 +160,7 @@ export default class AddRecordForm extends Component {
       <div class="item">
         <div class="title">금액</div>
         <div class="content">
-          <input type="text" name="amount" required>
+          <input type="number" name="amount" required>
         </div>
       </div>
       <div class="item">
