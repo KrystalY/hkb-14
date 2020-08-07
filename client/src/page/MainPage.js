@@ -54,8 +54,8 @@ export default class MainPage {
       case 'statistics':
         return div(
           { className: 'section' },
-          new CategoryChart(),
           new DailyChart(),
+          new CategoryChart(),
         );
       default:
         return div({ className: 'section' });
